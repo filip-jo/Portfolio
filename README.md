@@ -22,7 +22,7 @@ npm run lint
 | `src/content/site.ts` | Name, about text, short bio, experience, skills, links |
 | `src/content/projects.ts` | Case studies (order = overview and previous/next order) |
 | `src/app/globals.css` | Design tokens: colors, type scale (display, heading, body, ui, label), radius, sidebar, content width |
-| `src/components/AppShell.tsx` | Layout, mobile drawer; sidebar collapses to its content on the overview and expands on case pages |
+| `src/components/AppShell.tsx` | Layout, mobile drawer; the sidebar fits its content and is vertically centred |
 | `src/components/Sidebar.tsx` | Name, short bio and case list (case pages), contact |
 | `src/app/template.tsx` | Page enter transition |
 | `src/lib/ui.ts` | Shared hover/press styles for nav items and primary buttons |

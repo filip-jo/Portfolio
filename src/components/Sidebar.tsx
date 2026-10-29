@@ -54,7 +54,7 @@ function CaseNav() {
   const pathname = usePathname();
   return (
     <motion.nav aria-label="Cases" {...reveal}>
-      <p className="px-2.5 pt-6 pb-2 text-label font-medium text-muted">Cases</p>
+      <p className="px-2.5 pt-6 pb-2 text-label font-medium text-muted">Cases:</p>
       <motion.ul
         className="flex flex-col gap-0.5"
         initial="hidden"
@@ -101,15 +101,12 @@ function CaseNav() {
 
 export function Sidebar({
   caseOpen = false,
-  onCaseContentHidden,
 }: {
   /** Shows the short bio and the case list. */
   caseOpen?: boolean;
-  /** Called once the bio and case list have finished animating out. */
-  onCaseContentHidden?: () => void;
 }) {
   return (
-    <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
+    <div className="flex h-full min-h-0 flex-col overflow-y-auto px-3 py-5">
       <Link
         href="/"
         className="group -my-1.5 block rounded-md px-2.5 py-1.5 transition-[background-color,scale] duration-150 hover:bg-surface-hover active:bg-surface-hover motion-safe:active:scale-[0.98]"
@@ -120,7 +117,7 @@ export function Sidebar({
         </span>
       </Link>
 
-      <AnimatePresence initial={false} onExitComplete={onCaseContentHidden}>
+      <AnimatePresence initial={false}>
         {caseOpen && <ShortBio key="bio" />}
         {caseOpen && <CaseNav key="cases" />}
       </AnimatePresence>

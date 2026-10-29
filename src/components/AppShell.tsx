@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
@@ -9,21 +9,6 @@ import { isCasePath } from "@/content/projects";
 import { site } from "@/content/site";
 import { navItem } from "@/lib/ui";
 
-const ease = [0.22, 1, 0.36, 1] as const;
-
-// Height of an element, kept up to date as it resizes.
-function useHeight(ref: React.RefObject<HTMLElement | null>) {
-  const [height, setHeight] = useState<number>();
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new ResizeObserver(() => setHeight(el.clientHeight));
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, [ref]);
-  return height;
-}
-
 export function AppShell({ children }: { children: React.ReactNode }) {
   const [openPath, setOpenPath] = useState<string | null>(null);
   const pathname = usePathname();
@@ -31,39 +16,23 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const mobileOpen = openPath === pathname;
   const close = () => setOpenPath(null);
 
-  // On a case page the sidebar shows the short bio and case list and fills
-  // the screen height; on the overview it shrinks to fit its content. When
-  // leaving a case, those fade out first and only then does the sidebar shrink.
+  // On a case page the sidebar also shows the short bio and case list.
   const caseOpen = isCasePath(pathname);
-  const [bioPresent, setBioPresent] = useState(caseOpen);
-  if (caseOpen && !bioPresent) setBioPresent(true);
-  const expanded = caseOpen || bioPresent;
-
-  const trackRef = useRef<HTMLDivElement>(null);
-  const trackHeight = useHeight(trackRef);
 
   return (
     // reducedMotion="user": visitors who ask for less motion get fades without movement.
     <MotionConfig reducedMotion="user">
       <div className="min-h-dvh">
-        {/* Desktop sidebar: the track spans the screen height, the panel inside
-            is as tall as its content (vertically centred) or, while a case is
-            open, the whole track. */}
-        <div
-          ref={trackRef}
-          className="pointer-events-none fixed inset-y-sidebar-inset left-sidebar-inset hidden w-sidebar flex-col justify-center lg:flex"
-        >
-          <motion.aside
-            initial={false}
-            animate={{ height: expanded ? (trackHeight ?? "100%") : "auto" }}
-            transition={{ duration: 0.5, ease }}
-            className="pointer-events-auto max-h-full overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar"
-          >
+        {/* Desktop sidebar: the track spans the screen height; the panel inside
+            is as tall as its content and vertically centred. It grows and
+            shrinks with the bio and case list as they animate in and out. */}
+        <div className="pointer-events-none fixed inset-y-sidebar-inset left-sidebar-inset hidden w-sidebar flex-col justify-center lg:flex">
+          <aside className="pointer-events-auto flex max-h-full flex-col overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar">
             {/* Separate layout groups so the two sidebars' case highlights don't animate between each other. */}
             <LayoutGroup id="desktop-nav">
-              <Sidebar caseOpen={caseOpen} onCaseContentHidden={() => setBioPresent(false)} />
+              <Sidebar caseOpen={caseOpen} />
             </LayoutGroup>
-          </motion.aside>
+          </aside>
         </div>
 
         {/* Mobile top bar */}
