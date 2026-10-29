@@ -157,6 +157,7 @@ export const projects: Project[] = [
           "Made the concept",
           "Built a prototype with Claude, showcased on a branch",
           "Wrote the tickets",
+          "Shipped the feature together with the engineering team",
           "Tested it",
         ],
       },
