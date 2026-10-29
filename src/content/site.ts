@@ -25,8 +25,8 @@ export const site = {
   // Plain-text summary for search results and link previews.
   intro:
     "A hands-on Senior Product Designer with 6 years of experience in UX & UI design, based in Berlin.",
-  // The about-me text from the original portfolio. One string per line;
-  // **text** is bold.
+  // The about-me text from the original portfolio, rendered as one flowing
+  // paragraph (the strings are joined with spaces). **text** is bold.
   greeting: "Hi, i’m Filip,",
   about: [
     "a hands-on **Senior Product Designer with 6 years of experience in UX & UI design.**",
