@@ -44,6 +44,13 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
 
   return (
     <article>
+      <Link
+        href="/"
+        className="group -ml-2 mb-6 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+      >
+        <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
+        Overview
+      </Link>
       <header className="max-w-2xl">
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
