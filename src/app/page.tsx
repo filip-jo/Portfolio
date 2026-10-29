@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <>
       <section className="max-w-2xl">
-        <h1 className="text-display">{site.greeting}</h1>
+        <h1 className="highlight-fade text-display">{site.greeting}</h1>
         <AboutMe className="mt-4 text-heading font-normal" />
         <p className="mt-4 text-heading font-normal text-muted">
           {site.workIntro}

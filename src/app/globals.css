@@ -64,6 +64,7 @@
   --color-muted: var(--muted);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
+  --color-highlight: var(--highlight);
 
   --radius-card: var(--radius);
   --radius-sidebar: var(--sidebar-radius);
@@ -106,8 +107,9 @@ body {
 }
 
 /*
- * Biography highlights start in the text colour and fade to --highlight
- * once the page has appeared. Reduced-motion users get the end state.
+ * The overview title and biography highlights start in the text colour and
+ * fade to --highlight once the page has appeared. Reduced-motion users get
+ * the end state.
  */
 @keyframes highlight-in {
   from {
@@ -118,13 +120,13 @@ body {
   }
 }
 
-.bio-highlight {
+.highlight-fade {
   color: var(--highlight);
   animation: highlight-in 1.2s ease-out 0.6s backwards;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bio-highlight {
+  .highlight-fade {
     animation: none;
   }
 }

@@ -8,7 +8,7 @@ export function ProjectCard({ project, preload = false }: { project: Project; pr
   return (
     <Link
       href={`/${project.slug}/`}
-      className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-colors hover:border-muted"
+      className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[translate,box-shadow,border-color] duration-300 ease-out hover:border-muted hover:shadow-sidebar focus-visible:border-muted focus-visible:shadow-sidebar focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1"
     >
       <div className="aspect-[4/3] overflow-hidden bg-surface-hover">
         <Image
@@ -18,7 +18,7 @@ export function ProjectCard({ project, preload = false }: { project: Project; pr
           height={project.cover.height}
           sizes="(min-width: 640px) 50vw, 100vw"
           preload={preload}
-          className="size-full object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+          className="size-full object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04] group-focus-visible:scale-[1.04]"
         />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
@@ -28,9 +28,9 @@ export function ProjectCard({ project, preload = false }: { project: Project; pr
             {project.market} · {project.stage}
           </span>
         </div>
-        <h3 className="flex items-center gap-1 text-heading">
+        <h3 className="flex items-center gap-1 text-heading transition-colors group-hover:text-highlight group-focus-visible:text-highlight">
           {project.title}
-          <ArrowUpRight className="size-4 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+          <ArrowUpRight className="size-4 text-muted transition-[translate,color] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-highlight group-focus-visible:text-highlight" />
         </h3>
         <p className="text-ui text-muted">{project.summary}</p>
       </div>

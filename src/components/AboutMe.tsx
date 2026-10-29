@@ -5,7 +5,7 @@ import { site } from "@/content/site";
 function withBold(line: string) {
   return line
     .split("**")
-    .map((part, i) => (i % 2 === 1 ? <strong key={i} className="bio-highlight font-semibold">{part}</strong> : part));
+    .map((part, i) => (i % 2 === 1 ? <strong key={i} className="highlight-fade font-semibold">{part}</strong> : part));
 }
 
 export function AboutMe({ className = "" }: { className?: string }) {

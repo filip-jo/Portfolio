@@ -28,8 +28,8 @@ function NavItem({
   return (
     <Link
       href={href}
-      className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
-        active ? "text-foreground" : "text-muted hover:text-foreground"
+      className={`group/nav relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
+        active ? "text-foreground" : "text-muted hover:bg-surface-hover/60 hover:text-foreground"
       }`}
     >
       {active && (
@@ -49,7 +49,10 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
-      <Link href="/" className="block px-2.5">
+      <Link
+        href="/"
+        className="-my-1.5 block rounded-md px-2.5 py-1.5 transition-colors hover:bg-surface-hover/60"
+      >
         <span className="block truncate text-ui font-medium">{site.name}</span>
         <span className="block truncate text-label text-muted">{site.role}</span>
         <span className="block truncate text-label text-muted">{site.location}</span>
@@ -74,7 +77,7 @@ export function Sidebar() {
             return (
               <NavItem key={project.slug} href={href} active={pathname === href}>
                 <span
-                  className="size-2 shrink-0 rounded-full"
+                  className="size-2 shrink-0 rounded-full transition-transform duration-200 group-hover/nav:scale-150"
                   style={{ background: project.accent }}
                 />
                 <span className="truncate">{project.title}</span>
