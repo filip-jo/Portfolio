@@ -49,14 +49,10 @@ export function Sidebar() {
 
   return (
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
-      <Link href="/" className="flex items-center gap-3 px-2.5">
-        <span className="flex size-9 items-center justify-center rounded-full bg-accent text-sm font-semibold text-accent-foreground">
-          {site.name.charAt(0)}
-        </span>
-        <span className="min-w-0">
-          <span className="block truncate text-sm font-medium">{site.name}</span>
-          <span className="block truncate text-xs text-muted">{site.role}</span>
-        </span>
+      <Link href="/" className="block px-2.5">
+        <span className="block truncate text-sm font-medium">{site.name}</span>
+        <span className="block truncate text-xs text-muted">{site.role}</span>
+        <span className="block truncate text-xs text-muted">{site.location}</span>
       </Link>
 
       <nav className="mt-8 flex flex-col gap-0.5">

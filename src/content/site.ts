@@ -17,18 +17,24 @@ const experience: Job[] = [
 ];
 
 export const site = {
-  name: "Filip",
+  name: "Filip Jo Friemann",
   role: "Senior Product Designer",
+  location: "Berlin",
   url: "https://filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
   email: "mail@filipjo.com",
   availability: "Open to senior product design roles",
+  // Plain-text summary for search results and link previews.
   intro:
-    "A hands-on Senior Product Designer with 6 years of experience in UX & UI design.",
+    "A hands-on Senior Product Designer with 6 years of experience in UX & UI design, based in Berlin.",
+  // The about-me text exactly as on the original portfolio. One string per
+  // line; **text** is bold.
+  greeting: "Hi, i’m Filip,",
   about: [
-    "As a product designer, I solve customers' problems together with engineering.",
-    "I'm a builder at heart, prototyping daily and opening PRs with my LLM and repo. Pairing my experience with my business degree creates a holistic approach to product design – I'm here for the success of the product, not just a feature.",
-    "I've always been part of agile, international environments – SaaS, agency and e-commerce.",
+    "a hands-on **Senior Product Designer** with 6 years of experience in **UX & UI design**.",
+    "As a Product designer I solve the customers problems together with engineering.",
+    "I’m a builder at heart, **prototyping daily and opening PRs with my LLM + repo**. Pairing my experience with my business degree creates a holistic approach to product design – i’m here for the success of the product, not just a feature. Always been part of agile, international environments – SaaS, agency, e-commmerce.",
   ],
+  workIntro: "Here is a quick glimpse in a handful of projects.",
   experience,
   skills: [
     "User research & interviews",

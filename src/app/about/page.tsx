@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { AboutMe } from "@/components/AboutMe";
 import { site } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -13,14 +14,14 @@ export default function About() {
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
           {site.name}
         </h1>
-        <p className="mt-2 text-muted">{site.role}</p>
+        <p className="mt-2 text-muted">
+          {site.role} · {site.location}
+        </p>
       </header>
 
-      <div className="mt-10 flex max-w-2xl flex-col gap-4 leading-relaxed text-muted">
-        <p className="text-lg text-foreground">{site.intro}</p>
-        {site.about.map((paragraph, i) => (
-          <p key={i}>{paragraph}</p>
-        ))}
+      <div className="mt-10 max-w-2xl">
+        <p className="font-semibold">{site.greeting}</p>
+        <AboutMe className="mt-2" />
       </div>
 
       <section className="mt-14 max-w-2xl">

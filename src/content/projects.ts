@@ -42,12 +42,6 @@ const peersIntro = [
   "As Senior Product Designer UX/UI, together with the product and dev team, I not only introduced several essential advancements but designed the product towards product–market fit.",
 ];
 
-const peersOutcomes: Outcome[] = [
-  { value: "−5", label: "Clicks to the target action" },
-  { value: "−90%", label: "Error rate" },
-  { value: "−5 min", label: "Time to complete the task" },
-];
-
 export const projects: Project[] = [
   {
     slug: "energy-report-builder",
@@ -132,7 +126,7 @@ export const projects: Project[] = [
     title: "Energy insights inbox",
     client: "ecoplanet",
     role: "Senior Product Designer",
-    timeline: "~2 months, 2 iterations",
+    timeline: "4 weeks, 2 iterations",
     summary: "An energy insights inbox to detect anomalies during production.",
     tags: ["B2B SaaS", "Energy"],
     accent: "oklch(0.65 0.13 270)",
@@ -166,10 +160,10 @@ export const projects: Project[] = [
       {
         heading: "Timeline & tools",
         body: [
-          "Shipped in 2 iterations, totaling about 2 months from idea to shipped: 1 week of ideation and concept with the product owners and about 3 days of designing and prototyping, followed by testing, feedback and iteration.",
+          "Shipped in 2 iterations: 1 week of ideation and concept with the product owners and about 3 days of designing and prototyping, followed by testing, feedback and iteration.",
         ],
         list: [
-          "Idea to shipped: 4 weeks", // TODO: conflicts with "about 2 months" above
+          "Idea to shipped: 4 weeks",
           "Bottleneck: engineering resources, as multiple features were being shipped",
           "Concept and component design: Figma",
           "Prototype: Claude Code, built and deployed on Vercel",
@@ -217,7 +211,7 @@ export const projects: Project[] = [
       width: 1024,
       height: 1024,
     },
-    outcomes: peersOutcomes,
+    outcomes: [],
     sections: [
       { heading: "Context", body: peersIntro },
       {
@@ -281,7 +275,11 @@ export const projects: Project[] = [
       width: 1024,
       height: 1024,
     },
-    outcomes: peersOutcomes, // TODO: same numbers as onboarding redesign — confirm
+    outcomes: [
+      { value: "−5", label: "Clicks to the target action" },
+      { value: "−90%", label: "Error rate" },
+      { value: "−5 min", label: "Time to complete the task" },
+    ],
     sections: [
       { heading: "Context", body: peersIntro },
       { heading: "Goal", body: ["OKR: increase task success and usability."] },
