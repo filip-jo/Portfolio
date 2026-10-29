@@ -64,7 +64,7 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-8">
-        <p className="px-2.5 pb-2 text-label font-medium tracking-wide text-muted uppercase">
+        <p className="px-2.5 pb-2 text-label font-medium text-muted">
           Cases
         </p>
         <nav className="flex flex-col gap-0.5">

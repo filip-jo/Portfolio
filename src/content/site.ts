@@ -25,11 +25,11 @@ export const site = {
   // Plain-text summary for search results and link previews.
   intro:
     "A hands-on Senior Product Designer with 6 years of experience in UX & UI design, based in Berlin.",
-  // The about-me text exactly as on the original portfolio. One string per
-  // line; **text** is bold.
+  // The about-me text from the original portfolio. One string per line;
+  // **text** is bold.
   greeting: "Hi, i’m Filip,",
   about: [
-    "a hands-on **Senior Product Designer** with 6 years of experience in **UX & UI design**.",
+    "a hands-on **Senior Product Designer with 6 years of experience in UX & UI design.**",
     "As a Product designer I solve the customers problems together with engineering.",
     "I’m a builder at heart, **prototyping daily and opening PRs with my LLM + repo**. Pairing my experience with my business degree creates a holistic approach to product design – i’m here for the success of the product, not just a feature. Always been part of agile, international environments – SaaS, agency, e-commmerce.",
   ],
