@@ -19,11 +19,11 @@ npm run lint
 
 | Path | What |
 | --- | --- |
-| `src/content/site.ts` | Name, intro, about, experience, links |
+| `src/content/site.ts` | Name, about text, experience, skills, links |
 | `src/content/projects.ts` | Case studies (order = sidebar order) |
 | `src/app/globals.css` | Design tokens: colors, radius, sidebar width, content width |
 | `src/components/AppShell.tsx` | Sidebar + content layout, mobile drawer |
-| `src/components/Sidebar.tsx` | Navigation, availability status, contact |
+| `src/components/Sidebar.tsx` | Navigation, case study list, contact |
 | `src/app/template.tsx` | Page enter transition |
 | `next.config.ts` | Static export, `basePath: "/portfolio-1"` |
 | `public/.htaccess` | Apache config for `/portfolio-1/`: HTTPS, clean URLs, caching, 404 |

@@ -22,7 +22,6 @@ export const site = {
   location: "Berlin",
   url: "https://filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
   email: "mail@filipjo.com",
-  availability: "Open to senior product design roles",
   // Plain-text summary for search results and link previews.
   intro:
     "A hands-on Senior Product Designer with 6 years of experience in UX & UI design, based in Berlin.",

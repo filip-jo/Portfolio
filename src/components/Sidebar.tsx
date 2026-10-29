@@ -3,13 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
-import { ArrowUpRight, LayoutGrid, Mail, User } from "lucide-react";
+import { ArrowUpRight, LayoutGrid, Mail } from "lucide-react";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
 
 const primaryNav = [
   { href: "/", label: "Overview", icon: LayoutGrid },
-  { href: "/about/", label: "About", icon: User },
 ];
 
 function normalize(path: string) {
@@ -85,13 +84,6 @@ export function Sidebar() {
       </div>
 
       <div className="mt-auto flex flex-col gap-3 pt-8">
-        <div className="flex items-center gap-2 px-2.5 text-xs text-muted">
-          <span className="relative flex size-2">
-            <span className="absolute inline-flex size-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex size-2 rounded-full bg-emerald-500" />
-          </span>
-          {site.availability}
-        </div>
         <a
           href={`mailto:${site.email}`}
           className="flex items-center justify-center gap-2 rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
