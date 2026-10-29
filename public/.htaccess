@@ -1,9 +1,10 @@
-# Apache config for the static export on All-inkl.
-# Copied into out/ by `next build` and deployed with the site.
+# Apache config for the static export on All-inkl, deployed to /portfolio/.
+# Copied into out/ by `next build`. Rewrite rules here replace (not extend)
+# any rules from the domain root's .htaccess, so HTTPS/www is enforced here too.
 
 Options -Indexes
 DirectoryIndex index.html
-ErrorDocument 404 /404.html
+ErrorDocument 404 /portfolio/404.html
 
 <IfModule mod_rewrite.c>
   RewriteEngine On
@@ -26,7 +27,7 @@ ErrorDocument 404 /404.html
   Header always set X-Frame-Options "SAMEORIGIN"
 
   # Hashed build assets never change: cache for a year.
-  <If "%{REQUEST_URI} =~ m#^/_next/static/#">
+  <If "%{REQUEST_URI} =~ m#^/portfolio/_next/static/#">
     Header set Cache-Control "public, max-age=31536000, immutable"
   </If>
   # HTML must revalidate so new deploys show up immediately.
