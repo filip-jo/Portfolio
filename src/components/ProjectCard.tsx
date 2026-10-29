@@ -4,11 +4,21 @@ import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 import { asset } from "@/lib/asset";
 
-export function ProjectCard({ project, preload = false }: { project: Project; preload?: boolean }) {
+export function ProjectCard({
+  project,
+  index = 0,
+  preload = false,
+}: {
+  project: Project;
+  /** Position in the grid; staggers the entrance animation. */
+  index?: number;
+  preload?: boolean;
+}) {
   return (
     <Link
       href={`/${project.slug}/`}
-      className="group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[translate,box-shadow,border-color] duration-300 ease-out hover:border-muted hover:shadow-sidebar focus-visible:border-muted focus-visible:shadow-sidebar focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1"
+      style={{ "--i": index } as React.CSSProperties}
+      className="tile-in group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[translate,box-shadow,border-color] duration-300 ease-out hover:border-muted hover:shadow-sidebar focus-visible:border-muted focus-visible:shadow-sidebar focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1"
     >
       <div className="aspect-[4/3] overflow-hidden bg-surface-hover">
         <Image

@@ -1,47 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, LayoutGrid, Mail } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { LinkedInIcon } from "@/components/LinkedInIcon";
 import { site } from "@/content/site";
-
-const primaryNav = [
-  { href: "/", label: "Overview", icon: LayoutGrid },
-];
-
-function normalize(path: string) {
-  return path.endsWith("/") ? path : `${path}/`;
-}
-
-function NavItem({
-  href,
-  active,
-  children,
-}: {
-  href: string;
-  active: boolean;
-  children: React.ReactNode;
-}) {
-  return (
-    <Link
-      href={href}
-      className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
-        active ? "text-foreground" : "text-muted hover:bg-surface-hover/60 hover:text-foreground"
-      }`}
-    >
-      {active && (
-        <motion.span
-          layoutId="sidebar-active"
-          className="absolute inset-0 rounded-md bg-surface-hover"
-          transition={{ type: "spring", bounce: 0.15, duration: 0.4 }}
-        />
-      )}
-      <span className="relative flex min-w-0 items-center gap-2.5">{children}</span>
-    </Link>
-  );
-}
 
 // Short biography shown while a case is open: the block opens up, then the
 // sentences fade and slide in one after the other.
@@ -85,8 +48,6 @@ export function Sidebar({
   /** Called once the bio has finished animating out. */
   onBioHidden?: () => void;
 }) {
-  const pathname = normalize(usePathname());
-
   return (
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
       <Link
@@ -101,15 +62,6 @@ export function Sidebar({
       <AnimatePresence initial={false} onExitComplete={onBioHidden}>
         {showBio && <ShortBio key="bio" />}
       </AnimatePresence>
-
-      <nav className="mt-6 flex flex-col gap-0.5">
-        {primaryNav.map(({ href, label, icon: Icon }) => (
-          <NavItem key={href} href={href} active={pathname === href}>
-            <Icon className="size-4 shrink-0" />
-            {label}
-          </NavItem>
-        ))}
-      </nav>
 
       <div className="mt-auto flex flex-col gap-3 pt-6">
         <a

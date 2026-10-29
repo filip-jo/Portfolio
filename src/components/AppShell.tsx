@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, LayoutGroup, motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Sidebar } from "@/components/Sidebar";
 import { isCasePath } from "@/content/projects";
@@ -56,10 +56,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           transition={{ duration: 0.5, ease }}
           className="pointer-events-auto max-h-full overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar"
         >
-          {/* Separate layout groups so the two sidebars' active highlights don't animate between each other. */}
-          <LayoutGroup id="desktop-nav">
-            <Sidebar showBio={caseOpen} onBioHidden={() => setBioPresent(false)} />
-          </LayoutGroup>
+          <Sidebar showBio={caseOpen} onBioHidden={() => setBioPresent(false)} />
         </motion.aside>
       </div>
 
@@ -103,9 +100,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               >
                 <X className="size-5" />
               </button>
-              <LayoutGroup id="mobile-nav">
-                <Sidebar showBio={caseOpen} />
-              </LayoutGroup>
+              <Sidebar showBio={caseOpen} />
             </motion.aside>
           </>
         )}

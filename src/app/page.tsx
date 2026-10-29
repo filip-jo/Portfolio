@@ -18,7 +18,7 @@ export default function Home() {
       <section aria-label="Selected work" className="mt-10">
         <div className="grid gap-5 sm:grid-cols-2">
           {projects.map((project, i) => (
-            <ProjectCard key={project.slug} project={project} preload={i < 2} />
+            <ProjectCard key={project.slug} project={project} index={i} preload={i < 2} />
           ))}
         </div>
       </section>

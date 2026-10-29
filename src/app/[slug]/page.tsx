@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { getProject, projects } from "@/content/projects";
+import { getProject, projects, type Project } from "@/content/projects";
 import { asset } from "@/lib/asset";
 
 // Case studies live at /<slug>/ to match the old WordPress URLs.
@@ -27,6 +27,51 @@ export async function generateMetadata({
   };
 }
 
+const navLink =
+  "inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground";
+
+// Previous/next case link; shown dimmed (not a link) at either end of the list
+// so the buttons keep their position.
+function CaseLink({ project, direction }: { project?: Project; direction: "previous" | "next" }) {
+  const label = direction === "previous" ? "Previous" : "Next";
+  const icon =
+    direction === "previous" ? (
+      <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
+    ) : (
+      <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" />
+    );
+  const content =
+    direction === "previous" ? (
+      <>
+        {icon}
+        {label}
+      </>
+    ) : (
+      <>
+        {label}
+        {icon}
+      </>
+    );
+
+  if (!project) {
+    return (
+      <span aria-hidden="true" className="inline-flex items-center gap-1.5 px-2 py-1 text-ui text-muted opacity-40">
+        {content}
+      </span>
+    );
+  }
+  return (
+    <Link
+      href={`/${project.slug}/`}
+      title={project.title}
+      aria-label={`${label} case: ${project.title}`}
+      className={`group ${navLink}`}
+    >
+      {content}
+    </Link>
+  );
+}
+
 export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
   const { slug } = await params;
   const project = getProject(slug);
@@ -44,13 +89,16 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
 
   return (
     <article>
-      <Link
-        href="/"
-        className="group -ml-2 mb-6 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
-      >
-        <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
-        Overview
-      </Link>
+      <div className="mb-6 flex items-center justify-between gap-4">
+        <Link href="/" className={`group -ml-2 ${navLink}`}>
+          <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
+          Overview
+        </Link>
+        <nav aria-label="Cases" className="-mr-2 flex items-center gap-1">
+          <CaseLink project={previous} direction="previous" />
+          <CaseLink project={next} direction="next" />
+        </nav>
+      </div>
       <header className="max-w-2xl">
         <div className="flex flex-wrap gap-2">
           {project.tags.map((tag) => (
@@ -134,34 +182,6 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         ))}
       </div>
 
-      <nav className="mt-20 grid gap-4 border-t border-border pt-8 sm:grid-cols-2">
-        {previous ? (
-          <Link
-            href={`/${previous.slug}/`}
-            className="group rounded-card p-4 transition-colors hover:bg-surface-hover"
-          >
-            <span className="flex items-center gap-1 text-label text-muted">
-              <ArrowLeft className="size-3 transition-transform group-hover:-translate-x-0.5" />
-              Previous
-            </span>
-            <span className="mt-1 block text-body font-medium">{previous.title}</span>
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next && (
-          <Link
-            href={`/${next.slug}/`}
-            className="group rounded-card p-4 text-right transition-colors hover:bg-surface-hover"
-          >
-            <span className="flex items-center justify-end gap-1 text-label text-muted">
-              Next
-              <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
-            </span>
-            <span className="mt-1 block text-body font-medium">{next.title}</span>
-          </Link>
-        )}
-      </nav>
     </article>
   );
 }
