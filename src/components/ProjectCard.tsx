@@ -1,6 +1,5 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 import { asset } from "@/lib/asset";
 
@@ -38,9 +37,8 @@ export function ProjectCard({
             {project.market} · {project.stage}
           </span>
         </div>
-        <h3 className="flex items-center gap-1 text-heading transition-colors group-hover:text-highlight group-focus-visible:text-highlight group-active:text-highlight">
+        <h3 className="text-heading transition-colors group-hover:text-highlight group-focus-visible:text-highlight group-active:text-highlight">
           {project.title}
-          <ArrowUpRight className="size-4 text-muted transition-[translate,color] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-highlight group-focus-visible:text-highlight" />
         </h3>
         <p className="text-ui text-muted">{project.summary}</p>
       </div>
