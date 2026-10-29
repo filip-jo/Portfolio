@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, LayoutGroup, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Sidebar } from "@/components/Sidebar";
 import { isCasePath } from "@/content/projects";
@@ -30,9 +30,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const mobileOpen = openPath === pathname;
   const close = () => setOpenPath(null);
 
-  // On a case page the sidebar shows the short bio and fills the screen
-  // height; on the overview it shrinks to fit its content. When leaving a
-  // case, the bio fades out first and only then does the sidebar shrink.
+  // On a case page the sidebar shows the short bio and case list and fills
+  // the screen height; on the overview it shrinks to fit its content. When
+  // leaving a case, those fade out first and only then does the sidebar shrink.
   const caseOpen = isCasePath(pathname);
   const [bioPresent, setBioPresent] = useState(caseOpen);
   if (caseOpen && !bioPresent) setBioPresent(true);
@@ -56,7 +56,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           transition={{ duration: 0.5, ease }}
           className="pointer-events-auto max-h-full overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar"
         >
-          <Sidebar showBio={caseOpen} onBioHidden={() => setBioPresent(false)} />
+          {/* Separate layout groups so the two sidebars' case highlights don't animate between each other. */}
+          <LayoutGroup id="desktop-nav">
+            <Sidebar caseOpen={caseOpen} onCaseContentHidden={() => setBioPresent(false)} />
+          </LayoutGroup>
         </motion.aside>
       </div>
 
@@ -100,7 +103,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               >
                 <X className="size-5" />
               </button>
-              <Sidebar showBio={caseOpen} />
+              <LayoutGroup id="mobile-nav">
+                <Sidebar caseOpen={caseOpen} />
+              </LayoutGroup>
             </motion.aside>
           </>
         )}
