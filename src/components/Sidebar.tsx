@@ -111,7 +111,13 @@ export function Sidebar({
         href="/"
         className="group -my-1.5 block rounded-md px-2.5 py-1.5 transition-[background-color,scale] duration-150 hover:bg-surface-hover active:bg-surface-hover motion-safe:active:scale-[0.98]"
       >
-        <span className="block truncate text-ui font-medium transition-colors group-hover:text-highlight">{site.name}</span>
+        <span
+          className={`block truncate text-ui font-medium transition-colors duration-300 group-hover:text-highlight ${
+            caseOpen ? "text-highlight" : ""
+          }`}
+        >
+          {site.name}
+        </span>
         <span className="block text-label text-muted">
           {site.role}, based in {site.location}
         </span>
