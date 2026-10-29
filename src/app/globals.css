@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens. Change values here to restyle the whole site;
+ * Tailwind utilities (bg-surface, text-muted, …) are generated from @theme below.
+ */
+:root {
+  --background: oklch(0.985 0 0);
+  --surface: oklch(1 0 0);
+  --surface-hover: oklch(0.96 0 0);
+  --border: oklch(0.92 0 0);
+  --foreground: oklch(0.2 0 0);
+  --muted: oklch(0.5 0 0);
+  --accent: oklch(0.55 0.2 260);
+  --accent-foreground: oklch(0.99 0 0);
+
+  --sidebar-width: 17rem;
+  --content-max-width: 56rem;
+  --radius: 0.75rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: oklch(0.16 0 0);
+    --surface: oklch(0.2 0 0);
+    --surface-hover: oklch(0.24 0 0);
+    --border: oklch(0.28 0 0);
+    --foreground: oklch(0.95 0 0);
+    --muted: oklch(0.68 0 0);
+    --accent: oklch(0.7 0.16 260);
+    --accent-foreground: oklch(0.16 0 0);
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-surface-hover: var(--surface-hover);
+  --color-border: var(--border);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+
+  --radius-card: var(--radius);
+  --spacing-sidebar: var(--sidebar-width);
+  --container-content: var(--content-max-width);
+
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-foreground);
+}
