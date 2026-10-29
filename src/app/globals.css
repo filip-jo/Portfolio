@@ -13,6 +13,8 @@
   --muted: oklch(0.5 0 0);
   --accent: oklch(0.55 0.2 260);
   --accent-foreground: oklch(0.99 0 0);
+  /* Colour the biography highlights fade into after the page loads. */
+  --highlight: var(--accent);
 
   --sidebar-width: 17rem;
   /* The sidebar floats inside the page: gap to the screen edges, corner radius, shadow. */
@@ -101,6 +103,30 @@ body {
   line-height: 1.65;
   background: var(--background);
   color: var(--foreground);
+}
+
+/*
+ * Biography highlights start in the text colour and fade to --highlight
+ * once the page has appeared. Reduced-motion users get the end state.
+ */
+@keyframes highlight-in {
+  from {
+    color: var(--foreground);
+  }
+  to {
+    color: var(--highlight);
+  }
+}
+
+.bio-highlight {
+  color: var(--highlight);
+  animation: highlight-in 1.2s ease-out 0.6s backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bio-highlight {
+    animation: none;
+  }
 }
 
 ::selection {
