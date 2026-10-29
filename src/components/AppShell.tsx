@@ -44,10 +44,11 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh">
       {/* Desktop sidebar: the track spans the screen height, the panel inside
-          is as tall as its content or, while a case is open, the whole track. */}
+          is as tall as its content (vertically centred) or, while a case is
+          open, the whole track. */}
       <div
         ref={trackRef}
-        className="pointer-events-none fixed inset-y-sidebar-inset left-sidebar-inset hidden w-sidebar lg:block"
+        className="pointer-events-none fixed inset-y-sidebar-inset left-sidebar-inset hidden w-sidebar flex-col justify-center lg:flex"
       >
         <motion.aside
           initial={false}
