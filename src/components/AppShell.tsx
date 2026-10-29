@@ -26,7 +26,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* Mobile top bar */}
       <header className="sticky top-0 z-30 flex h-14 items-center justify-between border-b border-border bg-surface/80 px-4 backdrop-blur lg:hidden">
-        <span className="text-sm font-medium">{site.name}</span>
+        <span className="text-ui font-medium">{site.name}</span>
         <button
           type="button"
           onClick={() => setOpenPath(pathname)}

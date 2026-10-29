@@ -21,7 +21,7 @@ npm run lint
 | --- | --- |
 | `src/content/site.ts` | Name, about text, experience, skills, links |
 | `src/content/projects.ts` | Case studies (order = sidebar order) |
-| `src/app/globals.css` | Design tokens: colors, radius, sidebar width, content width |
+| `src/app/globals.css` | Design tokens: colors, type scale (display, heading, body, ui, label), radius, sidebar, content width |
 | `src/components/AppShell.tsx` | Sidebar + content layout, mobile drawer |
 | `src/components/Sidebar.tsx` | Navigation, case study list, contact |
 | `src/app/template.tsx` | Page enter transition |

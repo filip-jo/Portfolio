@@ -46,7 +46,7 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
     <article>
       <Link
         href="/"
-        className="group -ml-2 mb-6 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-sm text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+        className="group -ml-2 mb-6 inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
       >
         <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
         Overview
@@ -56,23 +56,23 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
           {project.tags.map((tag) => (
             <span
               key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted"
+              className="rounded-full border border-border px-2.5 py-0.5 text-label text-muted"
             >
               {tag}
             </span>
           ))}
         </div>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight sm:text-4xl">
+        <h1 className="mt-4 text-display">
           {project.title}
         </h1>
-        <p className="mt-4 text-lg text-muted">{project.summary}</p>
+        <p className="mt-4 text-body text-muted">{project.summary}</p>
       </header>
 
       <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-border py-5 sm:grid-cols-3">
         {meta.map((item) => (
           <div key={item.label}>
-            <dt className="text-xs text-muted">{item.label}</dt>
-            <dd className="mt-1 text-sm">{item.value}</dd>
+            <dt className="text-label text-muted">{item.label}</dt>
+            <dd className="mt-1 text-ui">{item.value}</dd>
           </div>
         ))}
       </dl>
@@ -94,8 +94,8 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
               key={outcome.label}
               className="rounded-card border border-border bg-surface p-5"
             >
-              <p className="text-3xl font-semibold tracking-tight">{outcome.value}</p>
-              <p className="mt-1 text-sm text-muted">{outcome.label}</p>
+              <p className="text-display">{outcome.value}</p>
+              <p className="mt-1 text-ui text-muted">{outcome.label}</p>
             </div>
           ))}
         </div>
@@ -105,14 +105,14 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         {project.sections.map((section) => (
           <section key={section.heading}>
             <div className="max-w-2xl">
-              <h2 className="text-xl font-semibold tracking-tight">{section.heading}</h2>
+              <h2 className="text-heading">{section.heading}</h2>
               {section.body.map((paragraph, i) => (
-                <p key={i} className="mt-3 leading-relaxed text-muted">
+                <p key={i} className="mt-3 text-body text-muted">
                   {paragraph}
                 </p>
               ))}
               {section.list && (
-                <ul className="mt-3 list-disc space-y-1 pl-5 leading-relaxed text-muted marker:text-border">
+                <ul className="mt-3 list-disc space-y-1 pl-5 text-body text-muted marker:text-border">
                   {section.list.map((item) => (
                     <li key={item}>{item}</li>
                   ))}
@@ -140,11 +140,11 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
             href={`/${previous.slug}/`}
             className="group rounded-card p-4 transition-colors hover:bg-surface-hover"
           >
-            <span className="flex items-center gap-1 text-xs text-muted">
+            <span className="flex items-center gap-1 text-label text-muted">
               <ArrowLeft className="size-3 transition-transform group-hover:-translate-x-0.5" />
               Previous
             </span>
-            <span className="mt-1 block font-medium">{previous.title}</span>
+            <span className="mt-1 block text-body font-medium">{previous.title}</span>
           </Link>
         ) : (
           <span />
@@ -154,11 +154,11 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
             href={`/${next.slug}/`}
             className="group rounded-card p-4 text-right transition-colors hover:bg-surface-hover"
           >
-            <span className="flex items-center justify-end gap-1 text-xs text-muted">
+            <span className="flex items-center justify-end gap-1 text-label text-muted">
               Next
               <ArrowRight className="size-3 transition-transform group-hover:translate-x-0.5" />
             </span>
-            <span className="mt-1 block font-medium">{next.title}</span>
+            <span className="mt-1 block text-body font-medium">{next.title}</span>
           </Link>
         )}
       </nav>

@@ -10,7 +10,7 @@ function withBold(line: string) {
 
 export function AboutMe({ className = "" }: { className?: string }) {
   return (
-    <p className={`leading-relaxed text-muted ${className}`}>
+    <p className={`text-muted ${className}`}>
       {site.about.map((line, i) => (
         <Fragment key={i}>
           {i > 0 && <br />}

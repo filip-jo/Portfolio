@@ -27,7 +27,7 @@ function NavItem({
   return (
     <Link
       href={href}
-      className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm transition-colors ${
+      className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
         active ? "text-foreground" : "text-muted hover:text-foreground"
       }`}
     >
@@ -49,9 +49,9 @@ export function Sidebar() {
   return (
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
       <Link href="/" className="block px-2.5">
-        <span className="block truncate text-sm font-medium">{site.name}</span>
-        <span className="block truncate text-xs text-muted">{site.role}</span>
-        <span className="block truncate text-xs text-muted">{site.location}</span>
+        <span className="block truncate text-ui font-medium">{site.name}</span>
+        <span className="block truncate text-label text-muted">{site.role}</span>
+        <span className="block truncate text-label text-muted">{site.location}</span>
       </Link>
 
       <nav className="mt-8 flex flex-col gap-0.5">
@@ -64,7 +64,7 @@ export function Sidebar() {
       </nav>
 
       <div className="mt-8">
-        <p className="px-2.5 pb-2 text-xs font-medium tracking-wide text-muted uppercase">
+        <p className="px-2.5 pb-2 text-label font-medium tracking-wide text-muted uppercase">
           Cases
         </p>
         <nav className="flex flex-col gap-0.5">
@@ -86,7 +86,7 @@ export function Sidebar() {
       <div className="mt-auto flex flex-col gap-3 pt-8">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center justify-center gap-2 rounded-md bg-foreground px-3 py-2 text-sm font-medium text-background transition-opacity hover:opacity-90"
+          className="flex items-center justify-center gap-2 rounded-md bg-foreground px-3 py-2 text-ui font-medium text-background transition-opacity hover:opacity-90"
         >
           <Mail className="size-4" />
           Get in touch
@@ -98,7 +98,7 @@ export function Sidebar() {
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-1 items-center justify-center gap-1 rounded-md px-2 py-1.5 text-xs text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+              className="flex flex-1 items-center justify-center gap-1 rounded-md px-2 py-1.5 text-label text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
             >
               {link.label}
               <ArrowUpRight className="size-3" />

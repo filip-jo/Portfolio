@@ -22,17 +22,17 @@ export function ProjectCard({ project, preload = false }: { project: Project; pr
         />
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
-        <div className="flex items-center justify-between gap-4 text-xs text-muted">
+        <div className="flex items-center justify-between gap-4 text-label text-muted">
           <span>{project.client}</span>
           <span>
             {project.market} · {project.stage}
           </span>
         </div>
-        <h3 className="flex items-center gap-1 font-medium">
+        <h3 className="flex items-center gap-1 text-heading">
           {project.title}
           <ArrowUpRight className="size-4 text-muted transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
         </h3>
-        <p className="text-sm text-muted">{project.summary}</p>
+        <p className="text-ui text-muted">{project.summary}</p>
       </div>
     </Link>
   );

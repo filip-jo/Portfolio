@@ -21,6 +21,22 @@
   --sidebar-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06);
   --content-max-width: 56rem;
   --radius: 0.75rem;
+
+  /*
+   * Type scale: five sizes, used as text-display, text-heading, text-body,
+   * text-ui and text-label. Line heights, weights and tracking are in @theme.
+   */
+  --type-display: 1.875rem; /* 30px on mobile, 36px from 640px up */
+  --type-heading: 1.25rem; /* 20px */
+  --type-body: 1rem; /* 16px */
+  --type-ui: 0.875rem; /* 14px */
+  --type-label: 0.75rem; /* 12px */
+}
+
+@media (min-width: 40rem) {
+  :root {
+    --type-display: 2.25rem;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -56,11 +72,33 @@
   --spacing-sidebar-offset: calc(var(--sidebar-width) + 2 * var(--sidebar-inset));
   --container-content: var(--content-max-width);
 
+  /* Page titles, KPI numbers */
+  --text-display: var(--type-display);
+  --text-display--line-height: 1.15;
+  --text-display--letter-spacing: -0.025em;
+  --text-display--font-weight: 600;
+  /* Section headings, card titles; the about text uses it at regular weight */
+  --text-heading: var(--type-heading);
+  --text-heading--line-height: 1.45;
+  --text-heading--letter-spacing: -0.015em;
+  --text-heading--font-weight: 600;
+  /* Paragraphs, lists, case summaries */
+  --text-body: var(--type-body);
+  --text-body--line-height: 1.65;
+  /* Sidebar, buttons, chips, card summaries, meta values */
+  --text-ui: var(--type-ui);
+  --text-ui--line-height: 1.45;
+  /* Section labels, tags, meta labels */
+  --text-label: var(--type-label);
+  --text-label--line-height: 1.35;
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
 body {
+  font-size: var(--type-body);
+  line-height: 1.65;
   background: var(--background);
   color: var(--foreground);
 }
