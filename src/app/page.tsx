@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 export default function Home() {
   return (
     <>
-      <section className="max-w-2xl">
+      <section className="max-w-2xl pt-6 lg:pt-intro-offset">
         <h1 className="highlight-fade text-display">{site.greeting}</h1>
         <AboutMe className="mt-4 text-heading font-normal" />
         <p className="mt-4 text-heading font-normal text-muted">
