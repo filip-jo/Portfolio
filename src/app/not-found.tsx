@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { primaryButton } from "@/lib/ui";
 
 export default function NotFound() {
   return (
@@ -8,7 +9,7 @@ export default function NotFound() {
       <p className="mt-4 text-body text-muted">This page doesn&apos;t exist or has moved.</p>
       <Link
         href="/"
-        className="mt-6 inline-block rounded-md bg-foreground px-3 py-2 text-ui font-medium text-background hover:opacity-90"
+        className={`mt-6 inline-block px-3 py-2 text-ui font-medium ${primaryButton}`}
       >
         Back to overview
       </Link>

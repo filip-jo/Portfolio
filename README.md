@@ -25,6 +25,7 @@ npm run lint
 | `src/components/AppShell.tsx` | Layout, mobile drawer; sidebar collapses to its content on the overview and expands on case pages |
 | `src/components/Sidebar.tsx` | Name, short bio and case list (case pages), contact |
 | `src/app/template.tsx` | Page enter transition |
+| `src/lib/ui.ts` | Shared hover/press styles for nav items and primary buttons |
 | `next.config.ts` | Static export, `basePath: "/portfolio-1"` |
 | `public/.htaccess` | Apache config for `/portfolio-1/`: HTTPS, clean URLs, caching, 404 |
 

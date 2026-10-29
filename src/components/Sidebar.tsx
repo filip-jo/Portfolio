@@ -3,10 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "motion/react";
-import { ArrowUpRight, Mail } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Mail } from "lucide-react";
 import { LinkedInIcon } from "@/components/LinkedInIcon";
 import { projects } from "@/content/projects";
 import { site } from "@/content/site";
+import { navItem, primaryButton } from "@/lib/ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -74,8 +75,8 @@ function CaseNav() {
               <Link
                 href={href}
                 aria-current={active ? "page" : undefined}
-                className={`relative flex rounded-md px-2.5 py-1.5 text-ui transition-colors ${
-                  active ? "text-foreground" : "text-muted hover:bg-surface-hover/60 hover:text-foreground"
+                className={`group relative flex items-center gap-2 px-2.5 py-1.5 ${
+                  active ? "rounded-md text-ui font-medium text-foreground" : navItem
                 }`}
               >
                 {active && (
@@ -86,6 +87,9 @@ function CaseNav() {
                   />
                 )}
                 <span className="relative truncate">{project.title}</span>
+                {!active && (
+                  <ArrowRight className="ml-auto size-3.5 shrink-0 -translate-x-1 opacity-0 transition-[opacity,translate] duration-150 group-hover:translate-x-0 group-hover:opacity-100" />
+                )}
               </Link>
             </motion.li>
           );
@@ -108,9 +112,9 @@ export function Sidebar({
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
       <Link
         href="/"
-        className="-my-1.5 block rounded-md px-2.5 py-1.5 transition-colors hover:bg-surface-hover/60"
+        className="group -my-1.5 block rounded-md px-2.5 py-1.5 transition-[background-color,scale] duration-150 hover:bg-surface-hover motion-safe:active:scale-[0.98]"
       >
-        <span className="block truncate text-ui font-medium">{site.name}</span>
+        <span className="block truncate text-ui font-medium transition-colors group-hover:text-highlight">{site.name}</span>
         <span className="block truncate text-label text-muted">{site.role}</span>
         <span className="block truncate text-label text-muted">{site.location}</span>
       </Link>
@@ -123,9 +127,9 @@ export function Sidebar({
       <div className="mt-auto flex flex-col gap-3 pt-6">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center gap-2.5 rounded-md bg-foreground px-2.5 py-2 text-background transition-opacity hover:opacity-90"
+          className={`group flex items-center gap-2.5 px-2.5 py-2 ${primaryButton}`}
         >
-          <Mail className="size-4 shrink-0" />
+          <Mail className="size-4 shrink-0 transition-transform duration-200 group-hover:-rotate-6 group-hover:scale-110" />
           <span className="min-w-0">
             <span className="block text-ui font-medium">Get in touch</span>
             <span className="block truncate text-label opacity-70">{site.email}</span>
@@ -138,11 +142,13 @@ export function Sidebar({
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+              className={`group flex items-center gap-2.5 px-2.5 py-1.5 ${navItem}`}
             >
-              {link.label === "LinkedIn" && <LinkedInIcon className="size-4 shrink-0" />}
+              {link.label === "LinkedIn" && (
+                <LinkedInIcon className="size-4 shrink-0 transition-colors group-hover:text-highlight" />
+              )}
               {link.label}
-              <ArrowUpRight className="size-3" />
+              <ArrowUpRight className="size-3 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
           ))}
         </div>

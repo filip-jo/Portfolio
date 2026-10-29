@@ -154,6 +154,12 @@ body {
   }
 }
 
+/* Visible keyboard focus for every link and button. */
+:where(a, button):focus-visible {
+  outline: 2px solid var(--highlight);
+  outline-offset: 2px;
+}
+
 ::selection {
   background: var(--accent);
   color: var(--accent-foreground);

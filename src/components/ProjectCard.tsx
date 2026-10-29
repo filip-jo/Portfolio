@@ -18,7 +18,7 @@ export function ProjectCard({
     <Link
       href={`/${project.slug}/`}
       style={{ "--i": index } as React.CSSProperties}
-      className="tile-in group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[translate,box-shadow,border-color] duration-300 ease-out hover:border-muted hover:shadow-sidebar focus-visible:border-muted focus-visible:shadow-sidebar focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1"
+      className="tile-in group flex flex-col overflow-hidden rounded-card border border-border bg-surface transition-[translate,scale,box-shadow,border-color] duration-300 ease-out hover:border-muted hover:shadow-sidebar focus-visible:border-muted focus-visible:shadow-sidebar focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-highlight motion-safe:hover:-translate-y-1 motion-safe:focus-visible:-translate-y-1 motion-safe:active:scale-[0.99]"
     >
       <div className="aspect-[4/3] overflow-hidden bg-surface-hover">
         <Image

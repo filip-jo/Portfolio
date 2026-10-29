@@ -7,6 +7,7 @@ import { Menu, X } from "lucide-react";
 import { Sidebar } from "@/components/Sidebar";
 import { isCasePath } from "@/content/projects";
 import { site } from "@/content/site";
+import { navItem } from "@/lib/ui";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -69,7 +70,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <button
           type="button"
           onClick={() => setOpenPath(pathname)}
-          className="-mr-2 rounded-md p-2 text-muted hover:bg-surface-hover hover:text-foreground"
+          className={`-mr-2 p-2 ${navItem}`}
           aria-label="Open navigation"
           aria-expanded={mobileOpen}
         >
@@ -98,7 +99,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <button
                 type="button"
                 onClick={close}
-                className="absolute top-3 right-3 rounded-md p-2 text-muted hover:bg-surface-hover hover:text-foreground"
+                className={`absolute top-3 right-3 p-2 ${navItem}`}
                 aria-label="Close navigation"
               >
                 <X className="size-5" />

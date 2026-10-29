@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getProject, projects, type Project } from "@/content/projects";
 import { asset } from "@/lib/asset";
+import { navItem } from "@/lib/ui";
 
 // Case studies live at /<slug>/ to match the old WordPress URLs.
 // Static export: only the slugs listed here exist; anything else is a 404.
@@ -27,8 +28,7 @@ export async function generateMetadata({
   };
 }
 
-const navLink =
-  "inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground";
+const navLink = `inline-flex items-center gap-1.5 px-2 py-1 ${navItem}`;
 
 // Previous/next case link; shown dimmed (not a link) at either end of the list
 // so the buttons keep their position.
