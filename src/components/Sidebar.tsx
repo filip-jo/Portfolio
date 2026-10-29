@@ -74,7 +74,7 @@ export function Sidebar() {
         </p>
         <nav className="flex flex-col gap-0.5">
           {projects.map((project) => {
-            const href = `/work/${project.slug}/`;
+            const href = `/${project.slug}/`;
             return (
               <NavItem key={project.slug} href={href} active={pathname === href}>
                 <span

@@ -1,38 +1,46 @@
-// Site-wide content. Everything marked TODO is a placeholder to be replaced
-// with the real copy from filipjo.com/portfolio.
+// Site-wide content, migrated from filipjo.com/portfolio.
 
 export type SocialLink = {
   label: string;
   href: string;
 };
 
+export type Job = {
+  company: string;
+  title: string;
+  period?: string;
+};
+
+const experience: Job[] = [
+  { company: "ecoplanet", title: "Senior Product Designer" },
+  { company: "Peers", title: "Senior Product Designer UX/UI" },
+];
+
 export const site = {
-  name: "Filip", // TODO: full name
+  name: "Filip",
   role: "Senior Product Designer",
-  location: "TODO: City, Country",
   url: "https://www.filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
-  email: "TODO@filipjo.com",
+  email: "mail@filipjo.com",
   availability: "Open to senior product design roles",
   intro:
-    "TODO: One or two sentences on who you are, the kind of products you design, and the impact you're known for.",
+    "A hands-on Senior Product Designer with 6 years of experience in UX & UI design.",
   about: [
-    "TODO: Paragraph about your background and how you got into product design.",
-    "TODO: Paragraph about how you work — collaboration with PM and engineering, research, systems thinking.",
-    "TODO: Paragraph about what you're looking for next.",
+    "As a product designer, I solve customers' problems together with engineering.",
+    "I'm a builder at heart, prototyping daily and opening PRs with my LLM and repo. Pairing my experience with my business degree creates a holistic approach to product design – I'm here for the success of the product, not just a feature.",
+    "I've always been part of agile, international environments – SaaS, agency and e-commerce.",
   ],
-  experience: [
-    { company: "TODO: Company", title: "TODO: Title", period: "20XX – Present" },
-    { company: "TODO: Company", title: "TODO: Title", period: "20XX – 20XX" },
-  ],
+  experience,
   skills: [
-    "Product strategy",
-    "Interaction design",
-    "Design systems",
-    "Prototyping",
-    "User research",
-  ], // TODO: confirm
+    "User research & interviews",
+    "Concepts & user flows",
+    "Prototyping in code",
+    "UI & component design",
+    "Shipping with engineering",
+    "Figma",
+    "Claude Code",
+    "Linear",
+  ],
   social: [
-    { label: "LinkedIn", href: "#" }, // TODO
-    { label: "Resume", href: "#" }, // TODO: e.g. /resume.pdf
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/filipjo/" },
   ] satisfies SocialLink[],
 };

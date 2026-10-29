@@ -13,12 +13,11 @@ export default function About() {
         <h1 className="mt-2 text-3xl font-semibold tracking-tight sm:text-4xl">
           {site.name}
         </h1>
-        <p className="mt-2 text-muted">
-          {site.role} · {site.location}
-        </p>
+        <p className="mt-2 text-muted">{site.role}</p>
       </header>
 
       <div className="mt-10 flex max-w-2xl flex-col gap-4 leading-relaxed text-muted">
+        <p className="text-lg text-foreground">{site.intro}</p>
         {site.about.map((paragraph, i) => (
           <p key={i}>{paragraph}</p>
         ))}
@@ -33,7 +32,7 @@ export default function About() {
                 <span className="font-medium">{job.title}</span>
                 <span className="text-muted"> · {job.company}</span>
               </span>
-              <span className="text-sm text-muted">{job.period}</span>
+              {job.period && <span className="text-sm text-muted">{job.period}</span>}
             </li>
           ))}
         </ul>

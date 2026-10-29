@@ -6,6 +6,8 @@ const basePath = "/portfolio-1";
 
 const nextConfig: NextConfig = {
   basePath,
+  // Exposed so plain asset paths (images in public/) can be prefixed; see src/lib/asset.ts.
+  env: { NEXT_PUBLIC_BASE_PATH: basePath },
   // Static export: `next build` writes plain HTML/CSS/JS to `out/`,
   // which Apache on All-inkl serves directly (no Node runtime needed).
   output: "export",

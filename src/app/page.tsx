@@ -11,13 +11,14 @@ export default function Home() {
           Hi, I&apos;m {site.name}.
         </h1>
         <p className="mt-4 text-lg text-muted">{site.intro}</p>
+        <p className="mt-3 text-muted">{site.about[0]}</p>
       </section>
 
       <section className="mt-14">
         <h2 className="text-sm font-medium text-muted">Selected work</h2>
         <div className="mt-4 grid gap-5 sm:grid-cols-2">
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+          {projects.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} preload={i < 2} />
           ))}
         </div>
       </section>
