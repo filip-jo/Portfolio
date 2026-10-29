@@ -1,6 +1,20 @@
 @import "tailwindcss";
 
 /*
+ * Tailwind's hover: only applies when the *primary* input can hover, which
+ * iPadOS never reports, even with a mouse or trackpad attached. Apply hover
+ * styles whenever *any* input can hover instead; touch-only devices still
+ * skip them, so taps don't leave sticky hover states.
+ */
+@custom-variant hover {
+  @media (any-hover: hover) {
+    &:hover {
+      @slot;
+    }
+  }
+}
+
+/*
  * Design tokens. Change values here to restyle the whole site;
  * Tailwind utilities (bg-surface, text-muted, …) are generated from @theme below.
  */

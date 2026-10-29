@@ -1,7 +1,7 @@
 // Shared interaction styles, so every control hovers, presses and focuses the
 // same way. Callers add layout and padding; add `group` to animate icons inside.
-// Hover only applies with a mouse or trackpad; `active:` repeats it while a
-// finger is down, so touch screens get feedback too.
+// Hover applies whenever a mouse or trackpad is connected (see globals.css);
+// `active:` repeats it while a finger is down, so touch screens get feedback too.
 
 /** Text links and nav items: grey background and darker text on hover. */
 export const navItem =
