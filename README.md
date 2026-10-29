@@ -28,23 +28,28 @@ npm run lint
 | `next.config.ts` | Static export, `basePath: "/portfolio-1"` |
 | `public/.htaccess` | Apache config for `/portfolio-1/`: HTTPS, clean URLs, caching, 404 |
 
-## Deploy (All-inkl via SSH)
+## Deploy (All-inkl via FTPS)
 
 Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
-rsyncs `out/` to the server. Add these repository secrets
+mirrors `out/` to the server over encrypted FTP.
+
+Deploys use a dedicated All-inkl FTP user whose directory is locked to the
+`portfolio-1` folder (created in KAS → FTP). It can't reach the live
+`/portfolio` or the root site, and the deploy deletes anything in that folder
+that the build doesn't produce. Add these repository secrets
 (Settings → Secrets and variables → Actions):
 
-| Secret | Example |
+| Secret | Value |
 | --- | --- |
-| `SSH_HOST` | `wXXXXXXX.kasserver.com` |
-| `SSH_USER` | your All-inkl SSH user |
-| `SSH_PRIVATE_KEY` | private key whose public key is in `~/.ssh/authorized_keys` on the server |
-| `DEPLOY_PATH` | the `portfolio-1` folder inside the domain's document root, e.g. `/www/htdocs/wXXXXXXX/filipjo.com/portfolio-1` |
+| `FTP_SERVER` | the server KAS shows for the FTP user, e.g. `wXXXXXXX.kasserver.com` |
+| `FTP_USERNAME` | the dedicated FTP user |
+| `FTP_PASSWORD` | its password |
 
-`rsync --delete` replaces everything in `DEPLOY_PATH`, so it must be the
-`portfolio-1` folder, never the document root or the live `portfolio` folder.
-Likewise, whatever deploys the root site must exclude these folders so it
-doesn't wipe them.
+Never write these values into a file in this repo; it is public.
+
+Before uploading, the workflow checks that the FTP folder is either empty or
+contains `.deploy-target` (from `public/`, placed by every deploy). Otherwise it
+stops, so a wrongly configured FTP user can't overwrite another site.
 
 Links made with `next/link` get the base path prefix automatically. Plain
 `src`/`href` paths to files in `public/` (images, `resume.pdf`) need it added by hand.
@@ -57,6 +62,6 @@ To replace the current site at `/portfolio/`:
 2. `src/content/site.ts`: set `url` to `https://www.filipjo.com/portfolio/`.
 3. `src/app/layout.tsx`: remove the `robots` noindex entry.
 4. `public/.htaccess`: set `ErrorDocument 404 /portfolio/404.html`.
-5. Back up the current `portfolio` folder on the server, then point the
-   `DEPLOY_PATH` secret at it and deploy.
+5. Back up the current `portfolio` folder on the server and empty it, change
+   the FTP user's directory in KAS to `portfolio`, and deploy.
 6. Optionally redirect `/portfolio-1/` to `/portfolio/` and remove the old folder.
