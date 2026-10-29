@@ -10,7 +10,7 @@ export const site = {
   name: "Filip", // TODO: full name
   role: "Senior Product Designer",
   location: "TODO: City, Country",
-  url: "https://www.filipjo.com/portfolio/",
+  url: "https://www.filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
   email: "TODO@filipjo.com",
   availability: "Open to senior product design roles",
   intro:
