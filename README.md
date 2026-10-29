@@ -1,7 +1,7 @@
 # Portfolio
 
-Personal portfolio for senior product design roles, in progress at www.filipjo.com/portfolio-1/.
-It will replace the current site at www.filipjo.com/portfolio/ once finished (see
+Personal portfolio for senior product design roles, in progress at filipjo.com/portfolio-1/.
+It will replace the current site at filipjo.com/portfolio/ once finished (see
 [Launch](#launch)). The domain root is a separate site and not part of this repo.
 
 **Stack:** Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS v4 · Motion · Lucide icons · Geist font
@@ -59,7 +59,7 @@ Links made with `next/link` get the base path prefix automatically. Plain
 To replace the current site at `/portfolio/`:
 
 1. `next.config.ts`: set `basePath` to `"/portfolio"`.
-2. `src/content/site.ts`: set `url` to `https://www.filipjo.com/portfolio/`.
+2. `src/content/site.ts`: set `url` to `https://filipjo.com/portfolio/`.
 3. `src/app/layout.tsx`: remove the `robots` noindex entry.
 4. `public/.htaccess`: set `ErrorDocument 404 /portfolio/404.html`.
 5. Back up the current `portfolio` folder on the server and empty it, change

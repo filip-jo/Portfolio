@@ -1,6 +1,6 @@
 # Apache config for the static export on All-inkl, deployed to /portfolio-1/.
 # Copied into out/ by `next build`. Rewrite rules here replace (not extend)
-# any rules from the domain root's .htaccess, so HTTPS/www is enforced here too.
+# any rules from the domain root's .htaccess, so HTTPS and the bare domain are enforced here too.
 
 Options -Indexes
 DirectoryIndex index.html
@@ -9,10 +9,10 @@ ErrorDocument 404 /portfolio-1/404.html
 <IfModule mod_rewrite.c>
   RewriteEngine On
 
-  # Force HTTPS and the www host.
+  # Force HTTPS and the bare domain (matches the WordPress site at the root).
   RewriteCond %{HTTPS} off [OR]
-  RewriteCond %{HTTP_HOST} !^www\. [NC]
-  RewriteRule ^ https://www.filipjo.com%{REQUEST_URI} [L,R=301]
+  RewriteCond %{HTTP_HOST} ^www\. [NC]
+  RewriteRule ^ https://filipjo.com%{REQUEST_URI} [L,R=301]
 
   # Add a trailing slash to extensionless paths (matches trailingSlash: true).
   RewriteCond %{REQUEST_FILENAME} !-f

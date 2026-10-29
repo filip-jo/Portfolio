@@ -19,7 +19,7 @@ const experience: Job[] = [
 export const site = {
   name: "Filip",
   role: "Senior Product Designer",
-  url: "https://www.filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
+  url: "https://filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
   email: "mail@filipjo.com",
   availability: "Open to senior product design roles",
   intro:
