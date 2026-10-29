@@ -2,9 +2,8 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowUpRight, LayoutGrid, Mail } from "lucide-react";
-import { projects } from "@/content/projects";
 import { LinkedInIcon } from "@/components/LinkedInIcon";
 import { site } from "@/content/site";
 
@@ -28,7 +27,7 @@ function NavItem({
   return (
     <Link
       href={href}
-      className={`group/nav relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
+      className={`relative flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui transition-colors ${
         active ? "text-foreground" : "text-muted hover:bg-surface-hover/60 hover:text-foreground"
       }`}
     >
@@ -44,7 +43,48 @@ function NavItem({
   );
 }
 
-export function Sidebar() {
+// Short biography shown while a case is open: the block opens up, then the
+// sentences fade and slide in one after the other.
+function ShortBio() {
+  return (
+    <motion.div
+      initial={{ height: 0, opacity: 0 }}
+      animate={{ height: "auto", opacity: 1 }}
+      exit={{ height: 0, opacity: 0 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="overflow-hidden"
+    >
+      <motion.p
+        className="px-2.5 pt-4 text-ui text-muted"
+        initial="hidden"
+        animate="visible"
+        variants={{ visible: { transition: { delayChildren: 0.25, staggerChildren: 0.18 } } }}
+      >
+        {site.shortBio.map((sentence, i) => (
+          <motion.span
+            key={i}
+            className="inline-block"
+            variants={{
+              hidden: { opacity: 0, y: 6, filter: "blur(4px)" },
+              visible: { opacity: 1, y: 0, filter: "blur(0px)", transition: { duration: 0.5 } },
+            }}
+          >
+            {sentence}
+          </motion.span>
+        ))}
+      </motion.p>
+    </motion.div>
+  );
+}
+
+export function Sidebar({
+  showBio = false,
+  onBioHidden,
+}: {
+  showBio?: boolean;
+  /** Called once the bio has finished animating out. */
+  onBioHidden?: () => void;
+}) {
   const pathname = normalize(usePathname());
 
   return (
@@ -58,7 +98,11 @@ export function Sidebar() {
         <span className="block truncate text-label text-muted">{site.location}</span>
       </Link>
 
-      <nav className="mt-8 flex flex-col gap-0.5">
+      <AnimatePresence initial={false} onExitComplete={onBioHidden}>
+        {showBio && <ShortBio key="bio" />}
+      </AnimatePresence>
+
+      <nav className="mt-6 flex flex-col gap-0.5">
         {primaryNav.map(({ href, label, icon: Icon }) => (
           <NavItem key={href} href={href} active={pathname === href}>
             <Icon className="size-4 shrink-0" />
@@ -67,27 +111,7 @@ export function Sidebar() {
         ))}
       </nav>
 
-      <div className="mt-8">
-        <p className="px-2.5 pb-2 text-label font-medium text-muted">
-          Cases
-        </p>
-        <nav className="flex flex-col gap-0.5">
-          {projects.map((project) => {
-            const href = `/${project.slug}/`;
-            return (
-              <NavItem key={project.slug} href={href} active={pathname === href}>
-                <span
-                  className="size-2 shrink-0 rounded-full transition-transform duration-200 group-hover/nav:scale-150"
-                  style={{ background: project.accent }}
-                />
-                <span className="truncate">{project.title}</span>
-              </NavItem>
-            );
-          })}
-        </nav>
-      </div>
-
-      <div className="mt-auto flex flex-col gap-3 pt-8">
+      <div className="mt-auto flex flex-col gap-3 pt-6">
         <a
           href={`mailto:${site.email}`}
           className="flex items-center gap-2.5 rounded-md bg-foreground px-2.5 py-2 text-background transition-opacity hover:opacity-90"

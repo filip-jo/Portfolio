@@ -1,5 +1,5 @@
 // Case studies, migrated from filipjo.com/portfolio. The array order is the
-// order they appear in the sidebar and on the overview page. Slugs match the
+// order they appear on the overview page. Slugs match the
 // old WordPress URLs so existing links keep working after launch.
 // Image paths are relative to public/ and get the base path via asset().
 
@@ -33,8 +33,6 @@ export type Project = {
   timeline?: string;
   summary: string;
   tags: string[];
-  /** Dot colour in the sidebar. */
-  accent: string;
   cover: Image;
   outcomes: Outcome[];
   sections: Section[];
@@ -56,7 +54,6 @@ export const projects: Project[] = [
     timeline: "~2 weeks + testing",
     summary: "A reporting tool for energy managers.",
     tags: ["B2B SaaS", "Energy"],
-    accent: "oklch(0.72 0.1 280)",
     cover: {
       src: "/images/energy-report-builder/cover.webp",
       alt: "Report builder screens on a lavender background",
@@ -136,7 +133,6 @@ export const projects: Project[] = [
     timeline: "4 weeks, 2 iterations",
     summary: "An energy insights inbox to detect anomalies during production.",
     tags: ["B2B SaaS", "Energy"],
-    accent: "oklch(0.65 0.13 270)",
     cover: {
       src: "/images/energy-insights-inbox/cover.webp",
       alt: "Energy insights inbox screens on a lavender background",
@@ -213,7 +209,6 @@ export const projects: Project[] = [
     summary:
       "Untangling a long, error-prone onboarding into lean in-app flows that scale.",
     tags: ["B2B SaaS", "EdTech"],
-    accent: "oklch(0.8 0.12 150)",
     cover: {
       src: "/images/onboarding-redesign/cover.webp",
       alt: "The redesigned onboarding on a tablet and a phone",
@@ -279,7 +274,6 @@ export const projects: Project[] = [
     summary:
       "Reworking the learning path task flow: fewer clicks to the main action and quicker orientation.",
     tags: ["B2B SaaS", "EdTech"],
-    accent: "oklch(0.7 0.14 190)",
     cover: {
       src: "/images/peers-saas-increase-task-success/cover.webp",
       alt: "A learning path screen on a laptop",
@@ -313,4 +307,10 @@ export const projects: Project[] = [
 
 export function getProject(slug: string): Project | undefined {
   return projects.find((project) => project.slug === slug);
+}
+
+/** Whether a pathname (with or without trailing slash) is a case study page. */
+export function isCasePath(pathname: string) {
+  const slug = pathname.replace(/^\/|\/$/g, "");
+  return projects.some((project) => project.slug === slug);
 }
