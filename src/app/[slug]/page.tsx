@@ -84,6 +84,7 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
 
   const meta = [
     { label: "Company", value: project.client },
+    { label: "Company type", value: [...project.tags, project.stage].join(" · ") },
     { label: "Role", value: project.role },
     ...(project.timeline ? [{ label: "Timeline", value: project.timeline }] : []),
   ];
@@ -101,23 +102,11 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         </nav>
       </div>
       <header className="max-w-2xl">
-        <div className="flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="rounded-full border border-border px-2.5 py-0.5 text-label text-muted"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-        <h1 className="mt-4 text-display">
-          {project.title}
-        </h1>
+        <h1 className="text-display">{project.title}</h1>
         <p className="mt-4 text-body text-muted">{project.summary}</p>
       </header>
 
-      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-border py-5 sm:grid-cols-3">
+      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-border py-5 sm:grid-cols-4">
         {meta.map((item) => (
           <div key={item.label}>
             <dt className="text-label text-muted">{item.label}</dt>

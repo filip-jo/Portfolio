@@ -77,7 +77,7 @@ export const projects: Project[] = [
           "Built a prototype with Claude, showcased on a branch",
           "Designed the final components in Figma",
           "Wrote the tickets in Linear",
-          "Shipped it together with the engineering team",
+          "Shipped the feature together with the engineering team",
           "Tested it",
         ],
       },
