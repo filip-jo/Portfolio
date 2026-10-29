@@ -11,16 +11,12 @@ export default function Home() {
         <AboutMe className="mt-4 text-heading font-normal" />
         <p className="mt-4 text-heading font-normal text-muted">
           {site.workIntro}
-          <br />
-          <a href={`mailto:${site.email}`} className="text-foreground underline underline-offset-4">
-            {site.email}
-          </a>
         </p>
       </section>
 
-      <section className="mt-14">
-        <h2 className="text-label font-medium text-muted">Selected work</h2>
-        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+      {/* No visible heading: the last line of the intro leads into the cases. */}
+      <section aria-label="Selected work" className="mt-10">
+        <div className="grid gap-5 sm:grid-cols-2">
           {projects.map((project, i) => (
             <ProjectCard key={project.slug} project={project} preload={i < 2} />
           ))}

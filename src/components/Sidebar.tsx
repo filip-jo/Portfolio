@@ -86,10 +86,13 @@ export function Sidebar() {
       <div className="mt-auto flex flex-col gap-3 pt-8">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center justify-center gap-2 rounded-md bg-foreground px-3 py-2 text-ui font-medium text-background transition-opacity hover:opacity-90"
+          className="flex items-center gap-3 rounded-md bg-foreground px-3 py-2 text-background transition-opacity hover:opacity-90"
         >
-          <Mail className="size-4" />
-          Get in touch
+          <Mail className="size-4 shrink-0" />
+          <span className="min-w-0">
+            <span className="block text-ui font-medium">Get in touch</span>
+            <span className="block truncate text-label opacity-70">{site.email}</span>
+          </span>
         </a>
         <div className="flex gap-1">
           {site.social.map((link) => (
