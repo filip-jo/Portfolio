@@ -211,7 +211,7 @@ export const projects: Project[] = [
     role: "Senior Product Designer UX/UI",
     timeline: "Several weeks",
     summary:
-      "Breaking up the complete onboarding into a new user journey to increase scalability and onboarding success.",
+      "Untangling a long, error-prone onboarding into lean in-app flows that scale.",
     tags: ["B2B SaaS", "EdTech"],
     accent: "oklch(0.8 0.12 150)",
     cover: {
