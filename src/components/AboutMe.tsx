@@ -13,7 +13,7 @@ export function AboutMe({ className = "" }: { className?: string }) {
     <p className={`text-muted ${className}`}>
       {site.about.map((line, i) => (
         <Fragment key={i}>
-          {i > 0 && " "}
+          {i > 0 && <br />}
           {withBold(line)}
         </Fragment>
       ))}

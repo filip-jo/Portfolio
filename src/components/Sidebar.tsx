@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import { motion } from "motion/react";
 import { ArrowUpRight, LayoutGrid, Mail } from "lucide-react";
 import { projects } from "@/content/projects";
+import { LinkedInIcon } from "@/components/LinkedInIcon";
 import { site } from "@/content/site";
 
 const primaryNav = [
@@ -86,7 +87,7 @@ export function Sidebar() {
       <div className="mt-auto flex flex-col gap-3 pt-8">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center gap-3 rounded-md bg-foreground px-3 py-2 text-background transition-opacity hover:opacity-90"
+          className="flex items-center gap-2.5 rounded-md bg-foreground px-2.5 py-2 text-background transition-opacity hover:opacity-90"
         >
           <Mail className="size-4 shrink-0" />
           <span className="min-w-0">
@@ -94,15 +95,16 @@ export function Sidebar() {
             <span className="block truncate text-label opacity-70">{site.email}</span>
           </span>
         </a>
-        <div className="flex gap-1">
+        <div className="flex flex-col gap-0.5">
           {site.social.map((link) => (
             <a
               key={link.label}
               href={link.href}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-1 items-center justify-center gap-1 rounded-md px-2 py-1.5 text-label text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+              className="flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-ui text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
             >
+              {link.label === "LinkedIn" && <LinkedInIcon className="size-4 shrink-0" />}
               {link.label}
               <ArrowUpRight className="size-3" />
             </a>
