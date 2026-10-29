@@ -88,7 +88,7 @@ function CaseNav() {
                 )}
                 <span className="relative truncate">{project.title}</span>
                 {!active && (
-                  <ArrowRight className="ml-auto size-3.5 shrink-0 -translate-x-1 opacity-0 transition-[opacity,translate] duration-150 group-hover:translate-x-0 group-hover:opacity-100" />
+                  <ArrowRight className="ml-auto size-3.5 shrink-0 -translate-x-1 opacity-0 transition-[opacity,translate] duration-150 group-hover:translate-x-0 group-hover:opacity-100 group-active:translate-x-0 group-active:opacity-100" />
                 )}
               </Link>
             </motion.li>
@@ -112,7 +112,7 @@ export function Sidebar({
     <div className="flex h-full flex-col overflow-y-auto px-3 py-5">
       <Link
         href="/"
-        className="group -my-1.5 block rounded-md px-2.5 py-1.5 transition-[background-color,scale] duration-150 hover:bg-surface-hover motion-safe:active:scale-[0.98]"
+        className="group -my-1.5 block rounded-md px-2.5 py-1.5 transition-[background-color,scale] duration-150 hover:bg-surface-hover active:bg-surface-hover motion-safe:active:scale-[0.98]"
       >
         <span className="block truncate text-ui font-medium transition-colors group-hover:text-highlight">{site.name}</span>
         <span className="block truncate text-label text-muted">{site.role}</span>

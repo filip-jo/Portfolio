@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { getProject, projects, type Project } from "@/content/projects";
+import { Reveal } from "@/components/Reveal";
 import { asset } from "@/lib/asset";
 import { navItem } from "@/lib/ui";
 
@@ -137,14 +138,15 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
 
       {project.outcomes.length > 0 && (
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
-          {project.outcomes.map((outcome) => (
-            <div
+          {project.outcomes.map((outcome, i) => (
+            <Reveal
               key={outcome.label}
+              delay={i * 0.1}
               className="rounded-card border border-border bg-surface p-5"
             >
               <p className="text-display">{outcome.value}</p>
               <p className="mt-1 text-ui text-muted">{outcome.label}</p>
-            </div>
+            </Reveal>
           ))}
         </div>
       )}
@@ -152,7 +154,7 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
       <div className="mt-14 flex flex-col gap-12">
         {project.sections.map((section) => (
           <section key={section.heading}>
-            <div className="max-w-2xl">
+            <Reveal className="max-w-2xl">
               <h2 className="text-heading">{section.heading}</h2>
               {section.body.map((paragraph, i) => (
                 <p key={i} className="mt-3 text-body text-muted">
@@ -166,17 +168,18 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
                   ))}
                 </ul>
               )}
-            </div>
+            </Reveal>
             {section.images?.map((image) => (
-              <Image
-                  key={image.src}
+              <Reveal key={image.src} className="mt-8">
+                <Image
                   src={asset(image.src)}
                   alt={image.alt}
                   width={image.width}
                   height={image.height}
                   sizes="(min-width: 1024px) 56rem, 100vw"
-                  className="mt-8 w-full rounded-card border border-border"
+                  className="w-full rounded-card border border-border"
                 />
+              </Reveal>
             ))}
           </section>
         ))}
