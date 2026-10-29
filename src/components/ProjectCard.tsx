@@ -24,7 +24,9 @@ export function ProjectCard({ project, preload = false }: { project: Project; pr
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-center justify-between gap-4 text-xs text-muted">
           <span>{project.client}</span>
-          <span>{project.tags[0]}</span>
+          <span>
+            {project.market} · {project.stage}
+          </span>
         </div>
         <h3 className="flex items-center gap-1 font-medium">
           {project.title}

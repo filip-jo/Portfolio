@@ -26,6 +26,9 @@ export type Project = {
   slug: string;
   title: string;
   client: string;
+  /** Company's market and funding stage, shown on the overview tiles. */
+  market: "B2B" | "B2C";
+  stage: string;
   role: string;
   timeline?: string;
   summary: string;
@@ -47,6 +50,8 @@ export const projects: Project[] = [
     slug: "energy-report-builder",
     title: "Report builder",
     client: "ecoplanet",
+    market: "B2B",
+    stage: "Series A",
     role: "Senior Product Designer",
     timeline: "~2 weeks + testing",
     summary: "A reporting tool for energy managers.",
@@ -125,6 +130,8 @@ export const projects: Project[] = [
     slug: "energy-insights-inbox",
     title: "Energy insights inbox",
     client: "ecoplanet",
+    market: "B2B",
+    stage: "Series A",
     role: "Senior Product Designer",
     timeline: "4 weeks, 2 iterations",
     summary: "An energy insights inbox to detect anomalies during production.",
@@ -199,11 +206,13 @@ export const projects: Project[] = [
     slug: "onboarding-redesign",
     title: "Onboarding redesign",
     client: "Peers",
+    market: "B2B",
+    stage: "Seed",
     role: "Senior Product Designer UX/UI",
     timeline: "Several weeks",
     summary:
       "Breaking up the complete onboarding into a new user journey to increase scalability and onboarding success.",
-    tags: ["EdTech", "B2B SaaS"],
+    tags: ["B2B SaaS", "EdTech"],
     accent: "oklch(0.8 0.12 150)",
     cover: {
       src: "/images/onboarding-redesign/cover.webp",
@@ -264,10 +273,12 @@ export const projects: Project[] = [
     slug: "peers-saas-increase-task-success",
     title: "Increase task success",
     client: "Peers",
+    market: "B2B",
+    stage: "Seed",
     role: "Senior Product Designer UX/UI",
     summary:
       "Reworking the learning path task flow: fewer clicks to the main action and quicker orientation.",
-    tags: ["EdTech", "B2B SaaS"],
+    tags: ["B2B SaaS", "EdTech"],
     accent: "oklch(0.7 0.14 190)",
     cover: {
       src: "/images/peers-saas-increase-task-success/cover.webp",
