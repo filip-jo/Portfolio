@@ -15,6 +15,10 @@
   --accent-foreground: oklch(0.99 0 0);
 
   --sidebar-width: 17rem;
+  /* The sidebar floats inside the page: gap to the screen edges, corner radius, shadow. */
+  --sidebar-inset: 0.75rem;
+  --sidebar-radius: 1rem;
+  --sidebar-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06);
   --content-max-width: 56rem;
   --radius: 0.75rem;
 }
@@ -29,6 +33,7 @@
     --muted: oklch(0.68 0 0);
     --accent: oklch(0.7 0.16 260);
     --accent-foreground: oklch(0.16 0 0);
+    --sidebar-shadow: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px oklch(0 0 0 / 0.35);
   }
 }
 
@@ -43,7 +48,12 @@
   --color-accent-foreground: var(--accent-foreground);
 
   --radius-card: var(--radius);
+  --radius-sidebar: var(--sidebar-radius);
+  --shadow-sidebar: var(--sidebar-shadow);
   --spacing-sidebar: var(--sidebar-width);
+  --spacing-sidebar-inset: var(--sidebar-inset);
+  /* Room the content leaves for the floating sidebar: inset + width + inset. */
+  --spacing-sidebar-offset: calc(var(--sidebar-width) + 2 * var(--sidebar-inset));
   --container-content: var(--content-max-width);
 
   --font-sans: var(--font-geist-sans);

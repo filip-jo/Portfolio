@@ -65,7 +65,7 @@ export function Sidebar() {
 
       <div className="mt-8">
         <p className="px-2.5 pb-2 text-xs font-medium tracking-wide text-muted uppercase">
-          Work
+          Cases
         </p>
         <nav className="flex flex-col gap-0.5">
           {projects.map((project) => {

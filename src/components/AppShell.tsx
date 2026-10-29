@@ -17,7 +17,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-dvh">
       {/* Desktop sidebar */}
-      <aside className="fixed inset-y-0 left-0 hidden w-sidebar border-r border-border bg-surface lg:block">
+      <aside className="fixed inset-y-sidebar-inset left-sidebar-inset hidden w-sidebar overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar lg:block">
         {/* Separate layout groups so the two sidebars' active highlights don't animate between each other. */}
         <LayoutGroup id="desktop-nav">
           <Sidebar />
@@ -50,10 +50,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               onClick={close}
             />
             <motion.aside
-              className="fixed inset-y-0 left-0 z-50 w-sidebar max-w-[85vw] border-r border-border bg-surface lg:hidden"
-              initial={{ x: "-100%" }}
+              className="fixed inset-y-sidebar-inset left-sidebar-inset z-50 w-sidebar max-w-[85vw] overflow-hidden rounded-sidebar border border-border bg-surface shadow-sidebar lg:hidden"
+              initial={{ x: "-110%" }}
               animate={{ x: 0 }}
-              exit={{ x: "-100%" }}
+              exit={{ x: "-110%" }}
               transition={{ type: "spring", bounce: 0, duration: 0.35 }}
             >
               <button
@@ -72,7 +72,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         )}
       </AnimatePresence>
 
-      <main className="lg:pl-sidebar">
+      <main className="lg:pl-sidebar-offset">
         <div className="mx-auto max-w-content px-4 py-10 sm:px-8 lg:py-16">
           {children}
         </div>
