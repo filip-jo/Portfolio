@@ -50,7 +50,7 @@ export function ProjectCard({
           />
         </span>
       </div>
-      <div className="relative z-10 mx-3 -mt-8 flex flex-1 flex-col gap-2 rounded-card border border-border bg-surface p-5 shadow-sidebar transition-colors duration-300 group-hover:border-muted group-focus-visible:border-muted group-active:border-muted">
+      <div className="relative z-10 -mt-8 flex flex-1 flex-col gap-2 rounded-card border border-border bg-surface p-5 shadow-sidebar transition-colors duration-300 group-hover:border-muted group-focus-visible:border-muted group-active:border-muted">
         <div className="flex items-center justify-between gap-4 text-label text-muted">
           <span>{project.client}</span>
           <span>
