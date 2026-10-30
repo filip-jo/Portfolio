@@ -32,7 +32,7 @@ export const site = {
     "**Senior Product Designer with 6 years of experience in UX & UI design.**",
     "**I’m a builder at heart, prototyping daily and opening PRs with my LLM + repo.** Pairing my experience with my business degree creates a holistic approach to product design – i’m here for the success of the product, not just a feature. Always been part of agile, international environments – SaaS, agency, e-commmerce.",
   ],
-  workIntro: "Here is a quick glimpse in a handful of projects.",
+  workIntro: "Here is a quick glimpse in a handful of projects:",
   // Shown in the sidebar while a case is open, one sentence at a time.
   shortBio: [
     "6 years of experience in UX & UI design with a background in motion design.",
