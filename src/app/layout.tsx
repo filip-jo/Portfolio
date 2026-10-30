@@ -16,8 +16,6 @@ export const metadata: Metadata = {
     type: "website",
     siteName: site.name,
   },
-  // Keep the in-progress site out of search results. Remove at launch.
-  robots: { index: false, follow: false },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

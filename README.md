@@ -1,8 +1,7 @@
 # Portfolio
 
-Personal portfolio for senior product design roles, in progress at filipjo.com/portfolio-1/.
-It will replace the current site at filipjo.com/portfolio/ once finished (see
-[Launch](#launch)). The domain root is a separate site and not part of this repo.
+Personal portfolio for senior product design roles, live at filipjo.com/portfolio/.
+The domain root is a separate WordPress site and not part of this repo.
 
 **Stack:** Next.js 16 (App Router, static export) · TypeScript · Tailwind CSS v4 · Motion · Lucide icons · Geist font
 
@@ -10,7 +9,7 @@ It will replace the current site at filipjo.com/portfolio/ once finished (see
 
 ```bash
 npm install
-npm run dev     # http://localhost:3000/portfolio-1
+npm run dev     # http://localhost:3000/portfolio
 npm run build   # static site in out/
 npm run lint
 ```
@@ -26,8 +25,8 @@ npm run lint
 | `src/components/Sidebar.tsx` | Name, short bio and case list (case pages), contact |
 | `src/app/template.tsx` | Page enter transition |
 | `src/lib/ui.ts` | Shared hover/press styles for nav items and primary buttons |
-| `next.config.ts` | Static export, `basePath: "/portfolio-1"` |
-| `public/.htaccess` | Apache config for `/portfolio-1/`: HTTPS, clean URLs, caching, 404 |
+| `next.config.ts` | Static export, `basePath: "/portfolio"` |
+| `public/.htaccess` | Apache config for `/portfolio/`: HTTPS, clean URLs, caching, 404, redirects for retired cases |
 
 ## Deploy (All-inkl via FTPS)
 
@@ -35,8 +34,7 @@ Pushing to `main` runs `.github/workflows/deploy.yml`, which builds the site and
 mirrors `out/` to the server over encrypted FTP.
 
 Deploys use a dedicated All-inkl FTP user whose directory is locked to the
-`portfolio-1` folder (created in KAS → FTP). It can't reach the live
-`/portfolio` or the root site, and the deploy deletes anything in that folder
+`portfolio` folder (KAS → FTP). It can't reach the WordPress site at the root, and the deploy deletes anything in that folder
 that the build doesn't produce. Add these repository secrets
 (Settings → Secrets and variables → Actions):
 
@@ -61,14 +59,9 @@ stops, so a wrongly configured FTP user can't overwrite another site.
 Links made with `next/link` get the base path prefix automatically. Plain
 `src`/`href` paths to files in `public/` (images, `resume.pdf`) need it added by hand.
 
-## Launch
+## Launch history
 
-To replace the current site at `/portfolio/`:
-
-1. `next.config.ts`: set `basePath` to `"/portfolio"`.
-2. `src/content/site.ts`: set `url` to `https://filipjo.com/portfolio/`.
-3. `src/app/layout.tsx`: remove the `robots` noindex entry.
-4. `public/.htaccess`: set `ErrorDocument 404 /portfolio/404.html`.
-5. Back up the current `portfolio` folder on the server and empty it, change
-   the FTP user's directory in KAS to `portfolio`, and deploy.
-6. Optionally redirect `/portfolio-1/` to `/portfolio/` and remove the old folder.
+The site was built at `/portfolio-1/` and launched at `/portfolio/` by switching
+`basePath`, removing the noindex meta tag and pointing the FTP user at a new
+`portfolio` folder. That real folder takes precedence over WordPress's virtual
+`/portfolio/` page, which is left untouched in WordPress.

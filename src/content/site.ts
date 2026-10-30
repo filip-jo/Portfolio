@@ -20,7 +20,7 @@ export const site = {
   name: "Filip Jo Friemann",
   role: "Senior Product Designer",
   location: "Berlin",
-  url: "https://filipjo.com/portfolio-1/", // TODO at launch: /portfolio/
+  url: "https://filipjo.com/portfolio/",
   email: "mail@filipjo.com",
   // Plain-text summary for search results and link previews.
   intro:

@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// Built at /portfolio-1 while the current site at /portfolio stays live.
-// At launch, switch this to "/portfolio" (see README → Launch).
-const basePath = "/portfolio-1";
+// The portfolio lives at filipjo.com/portfolio; the domain root is a separate
+// WordPress site.
+const basePath = "/portfolio";
 
 const nextConfig: NextConfig = {
   basePath,
