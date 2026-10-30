@@ -125,16 +125,30 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         ))}
       </dl>
 
-      <Image
-        src={asset(project.cover.src)}
-        alt={project.cover.alt}
-        width={project.cover.width}
-        height={project.cover.height}
-        sizes="(min-width: 1024px) 56rem, 100vw"
-        preload
-        className="stagger-in mt-10 max-h-[70vh] w-full rounded-card bg-surface-hover object-cover"
-        style={step(4)}
-      />
+      {project.cover.framed ? (
+        <div className="stagger-in mt-10 rounded-card bg-surface-hover p-4 sm:p-10" style={step(4)}>
+          <Image
+            src={asset(project.cover.src)}
+            alt={project.cover.alt}
+            width={project.cover.width}
+            height={project.cover.height}
+            sizes="(min-width: 1024px) 56rem, 100vw"
+            preload
+            className="w-full rounded-lg shadow-[0_2px_6px_oklch(0_0_0/0.08),0_16px_40px_oklch(0_0_0/0.14)]"
+          />
+        </div>
+      ) : (
+        <Image
+          src={asset(project.cover.src)}
+          alt={project.cover.alt}
+          width={project.cover.width}
+          height={project.cover.height}
+          sizes="(min-width: 1024px) 56rem, 100vw"
+          preload
+          className="stagger-in mt-10 max-h-[70vh] w-full rounded-card bg-surface-hover object-cover"
+          style={step(4)}
+        />
+      )}
 
       {project.outcomes.length > 0 && (
         <div className="mt-10 grid gap-4 sm:grid-cols-3">

@@ -8,6 +8,8 @@ export type Image = {
   alt: string;
   width: number;
   height: number;
+  /** A bare screenshot without its own background: shown whole, inset on a neutral backdrop. */
+  framed?: boolean;
 };
 
 export type Outcome = {
@@ -55,10 +57,11 @@ export const projects: Project[] = [
     summary: "A reporting tool for energy managers.",
     tags: ["B2B SaaS", "Energy"],
     cover: {
-      src: "/images/energy-report-builder/cover.webp",
-      alt: "Report builder screens on a lavender background",
-      width: 1920,
-      height: 1440,
+      src: "/images/energy-report-builder/cover-screen.webp",
+      alt: "The report builder: module picker next to a live preview of the report",
+      width: 1440,
+      height: 960,
+      framed: true,
     },
     outcomes: [],
     sections: [
@@ -134,10 +137,11 @@ export const projects: Project[] = [
     summary: "An energy insights inbox to detect anomalies during production.",
     tags: ["B2B SaaS", "Energy"],
     cover: {
-      src: "/images/energy-insights-inbox/cover.webp",
-      alt: "Energy insights inbox screens on a lavender background",
-      width: 1920,
-      height: 1441,
+      src: "/images/energy-insights-inbox/cover-screen.webp",
+      alt: "The insights inbox: anomalies grouped by meter next to a consumption chart",
+      width: 2000,
+      height: 1000,
+      framed: true,
     },
     outcomes: [],
     sections: [
