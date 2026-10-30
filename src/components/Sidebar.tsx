@@ -118,8 +118,8 @@ export function Sidebar({
         >
           {site.name}
         </span>
-        <span className="block text-label text-muted">
-          {site.role}, based in {site.location}
+        <span className="block text-ui text-muted">
+          {site.role}, <span className="whitespace-nowrap">based in {site.location}</span>
         </span>
       </Link>
 
