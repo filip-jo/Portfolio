@@ -29,6 +29,9 @@ export async function generateMetadata({
   };
 }
 
+// Position in the page's entrance cascade (see .stagger-in in globals.css).
+const step = (i: number) => ({ "--i": i }) as React.CSSProperties;
+
 const navLink = `inline-flex items-center gap-1.5 px-2 py-1 ${navItem}`;
 
 // Previous/next case link; shown dimmed (not a link) at either end of the list
@@ -91,7 +94,7 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
 
   return (
     <article>
-      <div className="mb-6 flex items-center justify-between gap-4">
+      <div className="stagger-in mb-6 flex items-center justify-between gap-4" style={step(0)}>
         <Link href="/" className={`group -ml-2 ${navLink}`}>
           <ArrowLeft className="size-4 transition-transform group-hover:-translate-x-0.5" />
           Overview
@@ -102,11 +105,18 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         </nav>
       </div>
       <header className="max-w-2xl">
-        <h1 className="text-display">{project.title}</h1>
-        <p className="mt-4 text-body text-muted">{project.summary}</p>
+        <h1 className="stagger-in text-display" style={step(1)}>
+          {project.title}
+        </h1>
+        <p className="stagger-in mt-4 text-body text-muted" style={step(2)}>
+          {project.summary}
+        </p>
       </header>
 
-      <dl className="mt-8 grid grid-cols-2 gap-4 border-y border-border py-5 sm:grid-cols-4">
+      <dl
+        className="stagger-in mt-8 grid grid-cols-2 gap-4 border-y border-border py-5 sm:grid-cols-4"
+        style={step(3)}
+      >
         {meta.map((item) => (
           <div key={item.label}>
             <dt className="text-label text-muted">{item.label}</dt>
@@ -122,7 +132,8 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
         height={project.cover.height}
         sizes="(min-width: 1024px) 56rem, 100vw"
         preload
-        className="mt-10 max-h-[70vh] w-full rounded-card bg-surface-hover object-cover"
+        className="stagger-in mt-10 max-h-[70vh] w-full rounded-card bg-surface-hover object-cover"
+        style={step(4)}
       />
 
       {project.outcomes.length > 0 && (
