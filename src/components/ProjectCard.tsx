@@ -3,8 +3,8 @@ import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { asset } from "@/lib/asset";
 
-// A case tile: the thumbnail floats on its own, and the text card floats in
-// front of its lower edge.
+// A case tile: the thumbnail floats on its own, inset from the sides, and the
+// wider text card floats in front of its lower edge.
 //
 // Hover only animates transform and opacity, which the GPU composites without
 // repainting: the tile lifts with `translate`, the thumbnail lifts further
@@ -29,8 +29,9 @@ export function ProjectCard({
     >
       {/* From two columns up, every thumbnail gets the same slot so tiles in a
           row line up: bare screenshots show whole and sit on the text card,
-          others fill it. In one column, screenshots keep their own height. */}
-      <div className="sm:flex sm:aspect-[3/2] sm:items-end sm:justify-center">
+          others fill it. In one column, screenshots keep their own height.
+          The side padding keeps the thumbnail narrower than the text card. */}
+      <div className="px-6 sm:flex sm:aspect-[3/2] sm:items-end sm:justify-center">
         <span
           className={`relative block rounded-lg shadow-thumb transition-[translate] duration-300 ease-out [will-change:translate] motion-safe:group-hover:-translate-y-1.5 motion-safe:group-focus-visible:-translate-y-1.5 after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-thumb-hover after:transition-opacity after:duration-300 after:[will-change:opacity] group-hover:after:opacity-100 group-focus-visible:after:opacity-100 group-active:after:opacity-100 ${
             project.cover.framed ? "sm:max-h-full sm:max-w-full" : "w-full"
