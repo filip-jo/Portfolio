@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 import { AnimatePresence, LayoutGroup, MotionConfig, motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { Sidebar } from "@/components/Sidebar";
@@ -18,6 +18,39 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   // On a case page the sidebar also shows the short bio and case list.
   const caseOpen = isCasePath(pathname);
+
+  // Page exits: clicking an internal link first fades the current page out,
+  // then navigates; the new page fades in through template.tsx. New-tab
+  // clicks, external links and browser back/forward behave as usual.
+  const router = useRouter();
+  const [leaving, setLeaving] = useState<{ from: string; to: string } | null>(null);
+  // Forget a finished exit once the page changes, so returning to that page
+  // (e.g. with the back button) doesn't replay it.
+  const [shownPath, setShownPath] = useState(pathname);
+  if (pathname !== shownPath) {
+    setShownPath(pathname);
+    setLeaving(null);
+  }
+  const isLeaving = leaving?.from === pathname;
+
+  useEffect(() => {
+    const base = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+    function onClick(e: MouseEvent) {
+      if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+      const link = (e.target as Element | null)?.closest?.("a");
+      if (!link || (link.target && link.target !== "_self") || link.hasAttribute("download")) return;
+      const url = new URL(link.href, window.location.href);
+      if (url.origin !== window.location.origin || !url.pathname.startsWith(`${base}/`)) return;
+      if (url.pathname === window.location.pathname) return;
+      // Stops the default navigation and next/link's own handler, which skips
+      // clicks that are already default-prevented.
+      e.preventDefault();
+      setOpenPath(null);
+      setLeaving({ from: pathname, to: url.pathname.slice(base.length) + url.search + url.hash });
+    }
+    document.addEventListener("click", onClick, true);
+    return () => document.removeEventListener("click", onClick, true);
+  }, [pathname]);
 
   return (
     // reducedMotion="user": visitors who ask for less motion get fades without movement.
@@ -83,11 +116,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           )}
         </AnimatePresence>
 
-        <main className="lg:pl-sidebar-offset">
+        <motion.main
+          className="lg:pl-sidebar-offset"
+          initial={false}
+          animate={{ opacity: isLeaving ? 0 : 1 }}
+          // Fade out on exit; snap back instantly so the new page's own fade-in shows.
+          transition={{ duration: isLeaving ? 0.2 : 0, ease: "easeIn" }}
+          onAnimationComplete={() => {
+            if (isLeaving && leaving) router.push(leaving.to);
+          }}
+        >
           <div className="mx-auto max-w-content px-4 py-10 sm:px-8 lg:py-16">
             {children}
           </div>
-        </main>
+        </motion.main>
       </div>
     </MotionConfig>
   );
