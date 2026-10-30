@@ -35,6 +35,9 @@
   --sidebar-inset: 0.75rem;
   --sidebar-radius: 1rem;
   --sidebar-shadow: 0 1px 2px oklch(0 0 0 / 0.04), 0 8px 24px oklch(0 0 0 / 0.06);
+  /* Floating thumbnails and case covers; deeper on hover. */
+  --thumb-shadow: 0 2px 6px oklch(0 0 0 / 0.08), 0 12px 32px oklch(0 0 0 / 0.12);
+  --thumb-shadow-hover: 0 4px 10px oklch(0 0 0 / 0.1), 0 20px 48px oklch(0 0 0 / 0.18);
   --content-max-width: 56rem;
   /* Extra space above the overview intro on large screens. */
   --intro-offset: 20vh;
@@ -68,6 +71,8 @@
     --accent: oklch(0.7 0.16 260);
     --accent-foreground: oklch(0.16 0 0);
     --sidebar-shadow: 0 1px 2px oklch(0 0 0 / 0.3), 0 8px 24px oklch(0 0 0 / 0.35);
+    --thumb-shadow: 0 2px 6px oklch(0 0 0 / 0.35), 0 12px 32px oklch(0 0 0 / 0.45);
+    --thumb-shadow-hover: 0 4px 10px oklch(0 0 0 / 0.4), 0 20px 48px oklch(0 0 0 / 0.55);
   }
 }
 
@@ -85,6 +90,8 @@
   --radius-card: var(--radius);
   --radius-sidebar: var(--sidebar-radius);
   --shadow-sidebar: var(--sidebar-shadow);
+  --shadow-thumb: var(--thumb-shadow);
+  --shadow-thumb-hover: var(--thumb-shadow-hover);
   --spacing-sidebar: var(--sidebar-width);
   --spacing-sidebar-inset: var(--sidebar-inset);
   /* Room the content leaves for the floating sidebar: inset + width + inset. */

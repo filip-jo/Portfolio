@@ -126,17 +126,16 @@ export default async function CaseStudy({ params }: PageProps<"/[slug]">) {
       </dl>
 
       {project.cover.framed ? (
-        <div className="stagger-in mt-10 rounded-card bg-surface-hover p-4 sm:p-10" style={step(4)}>
-          <Image
-            src={asset(project.cover.src)}
-            alt={project.cover.alt}
-            width={project.cover.width}
-            height={project.cover.height}
-            sizes="(min-width: 1024px) 56rem, 100vw"
-            preload
-            className="w-full rounded-lg shadow-[0_2px_6px_oklch(0_0_0/0.08),0_16px_40px_oklch(0_0_0/0.14)]"
-          />
-        </div>
+        <Image
+          src={asset(project.cover.src)}
+          alt={project.cover.alt}
+          width={project.cover.width}
+          height={project.cover.height}
+          sizes="(min-width: 1024px) 56rem, 100vw"
+          preload
+          className="stagger-in mt-10 w-full rounded-lg shadow-thumb"
+          style={step(4)}
+        />
       ) : (
         <Image
           src={asset(project.cover.src)}

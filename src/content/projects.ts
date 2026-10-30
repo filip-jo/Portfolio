@@ -8,7 +8,7 @@ export type Image = {
   alt: string;
   width: number;
   height: number;
-  /** A bare screenshot without its own background: shown whole, inset on a neutral backdrop. */
+  /** A bare screenshot without its own background: shown whole instead of cropped. */
   framed?: boolean;
 };
 
