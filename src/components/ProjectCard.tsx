@@ -7,7 +7,8 @@ import { asset } from "@/lib/asset";
 // front of its lower edge.
 //
 // Hover only animates transform and opacity, which the GPU composites without
-// repainting: the tile lifts with `translate`, and the deeper shadow is a
+// repainting: the tile lifts with `translate`, the thumbnail lifts further
+// than the text card for a sense of depth, and the deeper shadow is a
 // separate layer that fades in. Animating box-shadow or scaling the image
 // repaints the large thumbnail and its blur every frame and makes hover lag.
 export function ProjectCard({
@@ -31,7 +32,7 @@ export function ProjectCard({
           others fill it. In one column, screenshots keep their own height. */}
       <div className="sm:flex sm:aspect-[3/2] sm:items-end sm:justify-center">
         <span
-          className={`relative block rounded-lg shadow-thumb after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-thumb-hover after:transition-opacity after:duration-300 after:[will-change:opacity] group-hover:after:opacity-100 group-focus-visible:after:opacity-100 group-active:after:opacity-100 ${
+          className={`relative block rounded-lg shadow-thumb transition-[translate] duration-300 ease-out [will-change:translate] motion-safe:group-hover:-translate-y-1.5 motion-safe:group-focus-visible:-translate-y-1.5 after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:opacity-0 after:shadow-thumb-hover after:transition-opacity after:duration-300 after:[will-change:opacity] group-hover:after:opacity-100 group-focus-visible:after:opacity-100 group-active:after:opacity-100 ${
             project.cover.framed ? "sm:max-h-full sm:max-w-full" : "w-full"
           }`}
         >
