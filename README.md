@@ -48,6 +48,12 @@ that the build doesn't produce. Add these repository secrets
 
 Never write these values into a file in this repo; it is public.
 
+Uploads happen in two passes: first the new hashed CSS/JS in `_next/`, then
+the pages (deleting pages that are no longer built). Old files in `_next/` are
+never deleted, so a page that is open during or before a deploy keeps its
+styles and scripts. They are small; clear the server's `_next/` folder now and
+then if it grows, right before a deploy.
+
 Before uploading, the workflow checks that the FTP folder is either empty or
 contains `.deploy-target` (from `public/`, placed by every deploy). Otherwise it
 stops, so a wrongly configured FTP user can't overwrite another site.

@@ -51,8 +51,11 @@ jobs:
             exit 1
           fi
 
-      # Mirrors out/ into the FTP user's home folder, which on All-inkl is
-      # locked to the site's folder, and deletes files that are no longer built.
+      # Uploads out/ into the FTP user's home folder (locked to the site's
+      # folder on All-inkl) in an order that never leaves a page pointing at
+      # missing CSS/JS: first the new hashed assets in _next/, then the pages,
+      # deleting pages that are no longer built. Old _next/ assets are kept so
+      # tabs opened before a deploy keep working.
       - name: Upload to All-inkl (FTPS)
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
@@ -65,5 +68,7 @@ jobs:
             set ssl:verify-certificate true;
             set net:max-retries 3;
             set net:timeout 20;
-            mirror --reverse --delete --parallel=4 --verbose out/ ./;
+            set cmd:fail-exit yes;
+            mirror --reverse --parallel=4 --verbose out/_next/ _next/;
+            mirror --reverse --delete --parallel=4 --verbose --exclude ^_next/ out/ ./;
             quit"
